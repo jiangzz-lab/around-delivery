@@ -4,7 +4,7 @@ class Register extends Component {
     render() {
         return (
             <div>
-                Register changed again
+                Register change on branch master
             </div>
         );
     }
