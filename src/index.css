@@ -1,5 +1,7 @@
 @import "styles/App.css";
 @import "styles/TopBar.css";
+@import "styles/SearchBar.css";
+@import "~antd/dist/antd.css";
 
 body {
   margin: 0;
