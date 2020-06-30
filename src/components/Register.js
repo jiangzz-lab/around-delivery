@@ -4,7 +4,7 @@ class Register extends Component {
     render() {
         return (
             <div>
-                Register changed
+                Register changed again
             </div>
         );
     }
