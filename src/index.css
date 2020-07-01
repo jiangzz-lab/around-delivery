@@ -1,6 +1,10 @@
 @import "styles/App.css";
 @import "styles/TopBar.css";
+@import "styles/Home.css";
 @import "styles/SearchBar.css";
+@import "styles/TrackingPage.css";
+@import "styles/Order.css";
+
 @import "~antd/dist/antd.css";
 
 body {

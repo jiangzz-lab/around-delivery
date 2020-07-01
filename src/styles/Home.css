@@ -1,0 +1,22 @@
+.welcome-message {
+    font-size: 36pt;
+    margin-top: 10px;
+    margin-bottom: 10pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.new-order-button {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tracking-button {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
