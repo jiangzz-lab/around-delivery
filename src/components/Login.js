@@ -30,7 +30,7 @@ class LoginForm extends Component {
         };
 
         return (
-            <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
+            <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login">
                 <Form.Item label="Username">
                     {
                         getFieldDecorator('Username', {})(<Input />)
@@ -38,13 +38,7 @@ class LoginForm extends Component {
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
                     {
-                        getFieldDecorator('Password', {
-                            rule: [
-                                {
-                                    validator: this.validateToNextPassword,
-                                }
-                            ]
-                        })(<Input />)
+                        getFieldDecorator('Password', {})(<Input />)
                     }
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
