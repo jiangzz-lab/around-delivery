@@ -4,7 +4,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                Login changed on branch
+                update
             </div>
         );
     }
