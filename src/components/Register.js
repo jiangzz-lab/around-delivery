@@ -30,10 +30,6 @@ class RegistrationForm extends Component {
         };
 
         return (
-<<<<<<< HEAD
-            <div>
-            </div>
-=======
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
                 <Form.Item label="Username">
                     {
