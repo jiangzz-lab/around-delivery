@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Tracking extends Component {
+class Payment extends Component {
     render() {
         return (
             <div>
-                Tracking
+                Payment
             </div>
         );
     }
 }
 
-export default Tracking;
+export default Payment;

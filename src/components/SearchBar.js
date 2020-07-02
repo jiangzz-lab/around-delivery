@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Icon, Input, AutoComplete, Button } from 'antd';
+import { Input, AutoComplete } from 'antd';
 const { Search } = Input;
 
 function onSelect(value) {
@@ -8,24 +8,20 @@ function onSelect(value) {
 
 class SearchBar extends Component {
 
-    handleSearch = value => {
-        console.log('search', value);
-    };
-
     render() {
+
         return (
-            <div className="tracking-search-wrapper" style={{width: 300}}>
+            <div className="tracking-search-wrapper">
                 <AutoComplete
                     className="tracking-search"
                     size="large"
                     style={{ width: '100%' }}
                     onSelect={onSelect}
-                    onSearch={this.handleSearch}
-                    placeholder="Your tracking number"
+                    placeholder="Your order number"
                     optionLabelProp="text"
                 >
                     <Search
-                        onSearch={value => console.log(value)}
+                        onSearch={value => this.props.handleSearch(value)}
                     />
                 </AutoComplete>
             </div>

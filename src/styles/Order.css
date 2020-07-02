@@ -1,0 +1,31 @@
+.order {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.steps-content {
+    width : 1000px;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px dashed #e9e9e9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-height: 200px;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.steps-action {
+    margin-top: 24px;
+}
+
+.order-steps {
+    width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: auto;
+}
