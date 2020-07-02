@@ -65,8 +65,6 @@ class RegistrationForm extends Component {
                     </Button>
                 </Form.Item>
             </Form>
-            
->>>>>>> 9b538fecadf18e504d2a99ef6814b92dd90564bf
         );
     }
 }
