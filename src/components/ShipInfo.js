@@ -17,7 +17,7 @@ class ShipInfo extends Component {
 
       >
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Last Name"
               rules={[
@@ -30,7 +30,7 @@ class ShipInfo extends Component {
               <Input placeholder="Last Name" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="First_Name"
               rules={[
@@ -46,7 +46,7 @@ class ShipInfo extends Component {
         </Row>
 
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Phone Number"
               rules={[
@@ -59,7 +59,7 @@ class ShipInfo extends Component {
               <Input placeholder="Phone Number" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Email Address"
               rules={[
@@ -75,7 +75,7 @@ class ShipInfo extends Component {
         </Row>
 
         <Row>
-          <Col span={18}>
+          <Col span={18} push={3}>
             <Form.Item
               name="Street_Address_1"
               rules={[
@@ -91,7 +91,7 @@ class ShipInfo extends Component {
         </Row>
 
         <Row>
-          <Col span={18}>
+          <Col span={18} push={3}>
             <Form.Item
               name="Street_Address_2"
               rules={[
@@ -106,7 +106,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="City"
               rules={[
@@ -119,7 +119,7 @@ class ShipInfo extends Component {
               <Input placeholder="City" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Zip_Code"
               rules={[
@@ -134,7 +134,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="State"
               rules={[
@@ -147,7 +147,7 @@ class ShipInfo extends Component {
               <Input placeholder="State" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Country"
               rules={[
@@ -177,7 +177,7 @@ class ShipInfo extends Component {
 
       >
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Last Name"
               rules={[
@@ -190,7 +190,7 @@ class ShipInfo extends Component {
               <Input placeholder="Last Name" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="First_Name"
               rules={[
@@ -205,7 +205,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row>
-          <Col span={18}>
+          <Col span={18} push={3}>
             <Form.Item
               name="Street_Address_1"
               rules={[
@@ -220,7 +220,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row>
-          <Col span={18}>
+          <Col span={18} push={3}>
             <Form.Item
               name="Street_Address_2"
               rules={[
@@ -235,7 +235,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="City"
               rules={[
@@ -248,7 +248,7 @@ class ShipInfo extends Component {
               <Input placeholder="City" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Zip_Code"
               rules={[
@@ -263,7 +263,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row gutter={10}>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="State"
               rules={[
@@ -276,7 +276,7 @@ class ShipInfo extends Component {
               <Input placeholder="State" />
             </Form.Item>
           </Col>
-          <Col span={9}>
+          <Col span={9} push={3}>
             <Form.Item
               name="Country"
               rules={[
@@ -312,7 +312,7 @@ class ShipInfo extends Component {
 
       >
         <Row gutter={10}>
-          <Col span={4}>
+          <Col span={4} push={3}>
             <Form.Item
               name="Length(cm)"
               rules={[
@@ -325,7 +325,7 @@ class ShipInfo extends Component {
               <Input placeholder="Length(cm)" />
             </Form.Item>
           </Col>
-          <Col span={4}>
+          <Col span={4} push={3}>
             <Form.Item
               name="Width(cm)"
               rules={[
@@ -338,7 +338,7 @@ class ShipInfo extends Component {
               <Input placeholder="Width(cm)" />
             </Form.Item>
           </Col>
-          <Col span={5}>
+          <Col span={5} push={3}>
             <Form.Item
               name="Height(cm)"
               rules={[
@@ -352,7 +352,7 @@ class ShipInfo extends Component {
             </Form.Item>
           </Col>
 
-          <Col span={5}>
+          <Col span={5} push={3}>
             <Form.Item
               name="Weight(kg)"
               rules={[
@@ -367,7 +367,7 @@ class ShipInfo extends Component {
           </Col>
         </Row>
         <Row>
-          <Col span={5}>
+          <Col span={5} push={3}>
             <Form.Item
               name="RobotOrDrone"
               rules={[
