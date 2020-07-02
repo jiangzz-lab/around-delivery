@@ -8,6 +8,7 @@
 @import "styles/Order.css";
 @import "styles/Login.css";
 @import "styles/Register.css";
+@import "styles/PhotoBooth.css";
 
 body {
   margin: 0;
