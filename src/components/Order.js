@@ -57,10 +57,12 @@ class Order extends Component {
 
     render() {
         const onFinish = values => {
+            //values is the data submited.
             console.log("Success:", values);
+            //current is step id,valuse is submitted formdata. 
             this.formData[current] = values;
             console.log("Success stored data:", this.formData);
-            
+            //change logic, submit current form when click 
             if (current === steps.length - 1){
                 message.success('Processing complete!')
             } else {
@@ -70,6 +72,7 @@ class Order extends Component {
           };
       
         /*{ current notes the current step of the order process}*/
+        //key 01234
         const { current } = this.state;
         /*{ stepContent is an Array that saves corresponding component to render
          as step content for each step}*/
