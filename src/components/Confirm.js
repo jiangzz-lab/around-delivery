@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
+import { Result, Icon, Button } from 'antd';
 
 class Confirm extends Component {
     render() {
         return (
-            <div>
-                Confirm
-            </div>
+            <Result
+                icon={<Icon type="smile" theme="twoTone" />}
+                title="Great, we have done all the operations!"
+                extra={<Button type="primary">Tracking</Button>}
+            />
         );
     }
 }
