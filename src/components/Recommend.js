@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "antd/dist/antd.css";
-import { Col, Row, Form, Button, Radio } from "antd";
+import { Col, Row, Form, Radio } from "antd";
 
 class Recommend extends Component {
     RecommandInfoForm = () => {
@@ -15,19 +15,16 @@ class Recommend extends Component {
         };
     
         const deliveryOptions = [
-          { style: radioStyle, content: "Option1: Time, Free, Carrier", value: 1 },
-          { style: radioStyle, content: "Option2: Time, Free, Carrier", value: 2 },
-          { style: radioStyle, content: "Option3: Time, Free, Carrier", value: 3 }
+          { style: radioStyle, content: "Option1: Time, Free, Carrier", value: "option 1" },
+          { style: radioStyle, content: "Option2: Time, Free, Carrier", value: "option 2" },
+          { style: radioStyle, content: "Option3: Time, Free, Carrier", value: "option 3" }
         ];
+        
+
         return (
-          <Form
-            name="PackageInfoForm"
-            initialValues={{
-              remember: true
-            }}
-          >
+          <>
             <Row gutter={10}>
-              <Col span={30}>
+              <Col span={9} push={3}>
                 <Form.Item
                   label="Delivery time"
                   name="Delivery time"
@@ -41,18 +38,18 @@ class Recommend extends Component {
                   <Radio.Group
                     name="Delivery time"
                     onChange={onChange}
-                    defaultValue="a"
+                    initialValues="1hr"
                   >
-                    <Radio.Button value="a">1hr</Radio.Button>
-                    <Radio.Button value="b">5hrs</Radio.Button>
-                    <Radio.Button value="c">1day</Radio.Button>
-                    <Radio.Button value="d">5days</Radio.Button>
+                    <Radio.Button value="1hr">1hr</Radio.Button>
+                    <Radio.Button value="5hrs">5hrs</Radio.Button>
+                    <Radio.Button value="1day">1day</Radio.Button>
+                    <Radio.Button value="5days">5days</Radio.Button>
                   </Radio.Group>
                 </Form.Item>
               </Col>
             </Row>
             <Row gutter={10}>
-              <Col span={30}>
+              <Col span={9} push={3}>
                 <Form.Item
                   label="Delivery options"
                   name="Delivery options"
@@ -63,9 +60,9 @@ class Recommend extends Component {
                     }
                   ]}
                 >
-                  <Radio.Group onChange={this.onChange} defaultValue={1}>
+                  <Radio.Group onChange={this.onChange} initialValues={1}>
                     {deliveryOptions.map(option => (
-                      <Radio style={option.style} value={option.value}>
+                      <Radio style={option.style} value={option.value} key={option.value}>
                         {option.content}
                       </Radio>
                     ))}
@@ -73,7 +70,7 @@ class Recommend extends Component {
                 </Form.Item>
               </Col>
             </Row>
-          </Form>
+          </>
         );
       };
     

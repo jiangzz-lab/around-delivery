@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Register from "./Register";
-import Login from "./Login";
+import LoginForm from "./Login";
 import Home from "./Home";
 import PhotoBooth from "./PhotoBooth";
 
@@ -26,6 +26,9 @@ class Main extends Component {
                     </Route>
                 </Switch>
                 <PhotoBooth />
+                <LoginForm />
+                <Register />
+                <Home />
             </div>
         );
     }

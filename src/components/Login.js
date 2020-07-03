@@ -3,7 +3,6 @@ import { Form, Input, Button } from 'antd';
 
 class LoginForm extends Component {
     render() {
-        const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {
             labelCol: {
@@ -30,16 +29,12 @@ class LoginForm extends Component {
         };
 
         return (
-            <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login">
+            <Form {...formItemLayout} layout="horizontal" name="register" onFinish={this.handleSubmit} className="login">
                 <Form.Item label="Username">
-                    {
-                        getFieldDecorator('Username', {})(<Input />)
-                    }
+                    <Input placeholder="Username" />
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
-                    {
-                        getFieldDecorator('Password', {})(<Input />)
-                    }
+                        <Input placeholder="Password" />
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
@@ -51,6 +46,4 @@ class LoginForm extends Component {
     }
 }
 
-const Login = Form.create({ name: 'register' })(LoginForm);
-
-export default Login;
+export default LoginForm;

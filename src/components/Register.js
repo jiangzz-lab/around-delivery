@@ -3,8 +3,6 @@ import { Form, Input, Button } from 'antd';
 
 class RegistrationForm extends Component {
     render() {
-        const { getFieldDecorator } = this.props.form;
-
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
@@ -30,34 +28,30 @@ class RegistrationForm extends Component {
         };
 
         return (
-            <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
+            <Form {...formItemLayout} onSubmit={this.handleSubmit} name="register" className="register">
                 <Form.Item label="Username">
-                    {
-                        getFieldDecorator('Username', {})(<Input />)
-                    }
+                    <Input placeholder="Username" />
                 </Form.Item>
-                <Form.Item label="Password" hasFeedback>
-                    {
-                        getFieldDecorator('Password', {
-                            rule: [
-                                {
-                                    validator: this.validateToNextPassword,
-                                }
-                            ]
-                        })(<Input />)
-                    }
+                <Form.Item label="Password" hasFeedback
+                    rules={[
+                        {
+                        validator: this.validateToNextPassword,
+                        }
+                    ]}
+                    >
+                        <Input placeholder="Password" />
                 </Form.Item>
-                <Form.Item label="Confirm Password" hasFeedback>
-                    {
-                        getFieldDecorator('Confirm Password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please verify your Password'
-                                }
-                            ]
-                        })(<Input />)
-                    }
+                <Form.Item 
+                    label="Confirm Password" 
+                    hasFeedback
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please verify your Password'
+                        }
+                    ]}
+                >
+                    <Input placeholder="Confirm Password" />
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
@@ -69,6 +63,6 @@ class RegistrationForm extends Component {
     }
 }
 
-const Register = Form.create({ name: 'register' })(RegistrationForm);
+const Register = RegistrationForm;
 
 export default Register;

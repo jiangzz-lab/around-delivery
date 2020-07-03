@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Steps, Icon } from 'antd';
+import { Steps } from 'antd';
+import Icon from '@ant-design/icons';
 
 const { Step } = Steps;
 const steps = [

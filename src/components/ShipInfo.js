@@ -9,13 +9,7 @@ class ShipInfo extends Component {
   SenderInfoForm = () => {
     
     return (
-      <Form
-        name="SenderInfoForm"
-        initialValues={{
-          remember: true
-        }}
-
-      >
+      <>
         <Row gutter={10}>
           <Col span={9} push={3}>
             <Form.Item
@@ -161,29 +155,22 @@ class ShipInfo extends Component {
             </Form.Item>
           </Col>
         </Row>
-      </Form>
+      </>
     );
   };
 
   ReceiverInfoForm = () => {
-    
-
+      
     return (
-      <Form
-        name="ReceiverInfoForm"
-        initialValues={{
-          remember: true
-        }}
-
-      >
+      <>
         <Row gutter={10}>
           <Col span={9} push={3}>
             <Form.Item
-              name="Last Name"
+              name="Receiver Last Name"
               rules={[
                 {
                   required: true,
-                  message: "Last Name"
+                  message: "Receiver Last Name"
                 }
               ]}
             >
@@ -192,11 +179,11 @@ class ShipInfo extends Component {
           </Col>
           <Col span={9} push={3}>
             <Form.Item
-              name="First_Name"
+              name="Receiver First_Name"
               rules={[
                 {
                   required: true,
-                  message: "First Name"
+                  message: "Receiver First Name"
                 }
               ]}
             >
@@ -207,11 +194,11 @@ class ShipInfo extends Component {
         <Row>
           <Col span={18} push={3}>
             <Form.Item
-              name="Street_Address_1"
+              name="Receiver Street_Address_1"
               rules={[
                 {
                   required: true,
-                  message: "Street Address 1"
+                  message: "Receiver Street Address 1"
                 }
               ]}
             >
@@ -222,11 +209,11 @@ class ShipInfo extends Component {
         <Row>
           <Col span={18} push={3}>
             <Form.Item
-              name="Street_Address_2"
+              name="Receiver Street_Address_2"
               rules={[
                 {
                   required: false,
-                  message: "Street Address 2"
+                  message: "Receiver Street Address 2"
                 }
               ]}
             >
@@ -237,11 +224,11 @@ class ShipInfo extends Component {
         <Row gutter={10}>
           <Col span={9} push={3}>
             <Form.Item
-              name="City"
+              name="Receiver City"
               rules={[
                 {
                   required: true,
-                  message: "City"
+                  message: "Receiver City"
                 }
               ]}
             >
@@ -250,11 +237,11 @@ class ShipInfo extends Component {
           </Col>
           <Col span={9} push={3}>
             <Form.Item
-              name="Zip_Code"
+              name="Receiver Zip_Code"
               rules={[
                 {
                   required: true,
-                  message: "Zip Code"
+                  message: "Receiver Zip Code"
                 }
               ]}
             >
@@ -265,11 +252,11 @@ class ShipInfo extends Component {
         <Row gutter={10}>
           <Col span={9} push={3}>
             <Form.Item
-              name="State"
+              name="Receiver State"
               rules={[
                 {
                   required: true,
-                  message: "State"
+                  message: "Receiver State"
                 }
               ]}
             >
@@ -278,11 +265,11 @@ class ShipInfo extends Component {
           </Col>
           <Col span={9} push={3}>
             <Form.Item
-              name="Country"
+              name="Receiver Country"
               rules={[
                 {
                   required: true,
-                  message: "Country"
+                  message: "Receiver Country"
                 }
               ]}
             >
@@ -290,7 +277,7 @@ class ShipInfo extends Component {
             </Form.Item>
           </Col>
         </Row>
-      </Form>
+      </>
     );
   };
 
@@ -304,13 +291,7 @@ class ShipInfo extends Component {
   PackageInfoForm = () => {
 
     return (
-      <Form
-        name="PackageInfoForm"
-        initialValues={{
-          remember: true
-        }}
-
-      >
+      <>
         <Row gutter={10}>
           <Col span={4} push={3}>
             <Form.Item
@@ -387,7 +368,7 @@ class ShipInfo extends Component {
             </Form.Item>
           </Col>
         </Row>
-      </Form>
+      </>
     );
   };
     render() {
