@@ -12,12 +12,18 @@ class Main extends Component {
             <div className = 'main'>
                 <Switch>
                     <Route path = '/register'>
-                        <Register />
+                        <div>
+                            <Register />
+                            <PhotoBooth />
+                        </div>
                     </Route>
                 </Switch>
                 <Switch>
                     <Route path = '/login'>
-                        <Login />
+                        <div>
+                            <Login />
+                            <PhotoBooth />
+                        </div>
                     </Route>
                 </Switch>
                 <Switch>
@@ -25,7 +31,6 @@ class Main extends Component {
                         <Home />
                     </Route>
                 </Switch>
-                <PhotoBooth />
             </div>
         );
     }
