@@ -9,8 +9,9 @@ function onSelect(value) {
 class SearchBar extends Component {
 
     render() {
+
         return (
-            <div className="tracking-search-wrapper" style={{width: 300}}>
+            <div className="tracking-search-wrapper">
                 <AutoComplete
                     className="tracking-search"
                     size="large"

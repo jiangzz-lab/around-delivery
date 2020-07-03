@@ -30,29 +30,10 @@ class LoginForm extends Component {
 
         return (
             <Form {...formItemLayout} layout="horizontal" name="register" onFinish={this.handleSubmit} className="login">
-                <Form.Item 
-                    label="Username"
-                    name="Username"
-                    rules={[
-                        {
-                        required: false,
-                        message: "Username"
-                        }
-                    ]}
-                    >
+                <Form.Item label="Username">
                     <Input placeholder="Username" />
                 </Form.Item>
-                <Form.Item 
-                    label="Password" 
-                    hasFeedback
-                    name="Password"
-                    rules={[
-                        {
-                        required: false,
-                        message: "Password"
-                        }
-                    ]}
-                    >
+                <Form.Item label="Password" hasFeedback>
                         <Input placeholder="Password" />
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>

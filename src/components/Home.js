@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Order from "./Order";
 
 import TrackingPage from "./TrackingPage";
-import {Button, Modal} from "antd";
+import {Button, Modal, message} from "antd";
 import Icon from '@ant-design/icons';
 import SearchBar from "./SearchBar";
 
@@ -53,6 +53,16 @@ class Home extends Component {
     };
 
     handleSearch = value => {
+        if (value === "") {
+            message.warning({
+                content: 'Please enter your order number!',
+                className: 'tracking-warning',
+                style: {
+                    fontSize: "large"
+                },
+            });
+            return;
+        }
         this.setState({
             orderInfo: {
                 number : value,
