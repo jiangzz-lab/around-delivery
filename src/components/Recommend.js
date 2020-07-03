@@ -24,7 +24,7 @@ class Recommend extends Component {
         return (
           <>
             <Row gutter={10}>
-              <Col span={30}>
+              <Col span={9} push={3}>
                 <Form.Item
                   label="Delivery time"
                   name="Delivery time"
@@ -38,7 +38,7 @@ class Recommend extends Component {
                   <Radio.Group
                     name="Delivery time"
                     onChange={onChange}
-                    defaultValue="1hr"
+                    initialValues="1hr"
                   >
                     <Radio.Button value="1hr">1hr</Radio.Button>
                     <Radio.Button value="5hrs">5hrs</Radio.Button>
@@ -49,7 +49,7 @@ class Recommend extends Component {
               </Col>
             </Row>
             <Row gutter={10}>
-              <Col span={30}>
+              <Col span={9} push={3}>
                 <Form.Item
                   label="Delivery options"
                   name="Delivery options"
@@ -60,7 +60,7 @@ class Recommend extends Component {
                     }
                   ]}
                 >
-                  <Radio.Group onChange={this.onChange} defaultValue={1}>
+                  <Radio.Group onChange={this.onChange} initialValues={1}>
                     {deliveryOptions.map(option => (
                       <Radio style={option.style} value={option.value} key={option.value}>
                         {option.content}

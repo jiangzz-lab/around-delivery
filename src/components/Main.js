@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
 import Register from "./Register";
-import Login from "./Login";
+import LoginForm from "./Login";
 import Home from "./Home";
 
 class Main extends Component {
     render() {
         return (
             <div>
-                <Login />
+                <LoginForm />
                 <Register />
                 <Home />
             </div>

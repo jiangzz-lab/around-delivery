@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import Order from "./Order";
 
 import TrackingPage from "./TrackingPage";
-import {Button, Icon, Modal} from "antd";
+import {Button, Modal} from "antd";
+import Icon from '@ant-design/icons';
 import SearchBar from "./SearchBar";
 
 class Home extends Component {

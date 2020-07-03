@@ -33,12 +33,16 @@ const steps = [
     }
 ];
 
+
+
 class Order extends Component {
     constructor(props) {
         super(props);
         this.state = {
             current: 0,
         };
+
+        this.formData = {}
     }
     next() {
         const current = this.state.current + 1;
@@ -50,30 +54,30 @@ class Order extends Component {
         const current = this.state.current - 1;
         this.setState({ current });
     }
-    renderForm(){
 
-    }
-    
     render() {
         const onFinish = values => {
             console.log("Success:", values);
-            this.PackageInfoFormData = values;
-            console.log("Success stored data:", this.PackageInfoFormData);
+            this.formData[current] = values;
+            console.log("Success stored data:", this.formData);
+            
+            if (current === steps.length - 1){
+                message.success('Processing complete!')
+            } else {
+                this.next();
+            }
+            
           };
       
-        const onFinishFailed = errorInfo => {
-            console.log("Failed:", errorInfo);
-          };
-        {/* current notes the current step of the order process*/}
+        /*{ current notes the current step of the order process}*/
         const { current } = this.state;
-        {/* stepContent is an Array that saves corresponding component to render
-         as step content for each step*/}
+        /*{ stepContent is an Array that saves corresponding component to render
+         as step content for each step}*/
         const stepContent = [<ShipInfo senderForm={this.senderForm} reciverForm={this.reciverForm} packageForm={this.packageForm} />, <Recommend />, <CheckOut />, <Payment />, <Confirm />];
         return (
             <Form
             name="orderForm"
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             >
             <div>
                 <div className="order-steps">
@@ -89,24 +93,25 @@ class Order extends Component {
                 </div>
 
                 <div className="steps-action">
-                    {current < steps.length - 1 && (
-                        <Button htmlType="submit" type="primary" onClick={() => this.next()}>
-                            Next
-                        </Button>
-                    )}
-                    {current === steps.length - 1 && (
-                        <Form.Item>
-                        <Button htmlType="submit" type="primary" onClick={() => message.success('Processing complete!')}>
-                            Done
-                        </Button>
-                        </Form.Item>
-                    )}
-                    {current > 0 && (
-                        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                            Back
-                        </Button>
-                       
-                    )}
+                    <Form.Item>
+                        {current < steps.length - 1 && (
+                            <Button htmlType="submit"  type="primary" >
+                                Next
+                            </Button>
+                        )}
+                        {current === steps.length - 1 && (
+                            
+                            <Button htmlType="submit" type="primary" >
+                                Done
+                            </Button>
+                        )}
+                        {current > 0 && (
+                            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+                                Back
+                            </Button>
+                        
+                        )}
+                    </Form.Item>
                 </div>
             </div>
             </Form>
