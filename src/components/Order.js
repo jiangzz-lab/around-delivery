@@ -72,19 +72,19 @@ class Order extends Component {
                 </div>
 
                 <div className="steps-action">
+                    {current > 0 && (
+                        <Button className='back-button' style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+                            Back
+                        </Button>
+                    )}
                     {current < steps.length - 1 && (
-                        <Button type="primary" onClick={() => this.next()}>
+                        <Button className='next-button' type="primary" onClick={() => this.next()}>
                             Next
                         </Button>
                     )}
                     {current === steps.length - 1 && (
-                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                        <Button className='done-button' type="primary" onClick={() => message.success('Processing complete!')}>
                             Done
-                        </Button>
-                    )}
-                    {current > 0 && (
-                        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                            Back
                         </Button>
                     )}
                 </div>
