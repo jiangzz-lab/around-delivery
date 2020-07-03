@@ -3,12 +3,6 @@ import { Input, Col, Row, Form, Radio } from "antd";
 import React, {Component} from 'react';
 
 class ShipInfo extends Component {
-  constructor({ senderForm, receiverForm, packageForm }) {
-    super();
-    this.senderForm = senderForm;
-    this.receiverForm = receiverForm;
-    this.packageForm = packageForm;
-  }
   state = {
     value: 1
   };

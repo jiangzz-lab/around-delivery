@@ -73,7 +73,7 @@ class Order extends Component {
         const { current } = this.state;
         /*{ stepContent is an Array that saves corresponding component to render
          as step content for each step}*/
-        const stepContent = [<ShipInfo senderForm={this.senderForm} reciverForm={this.reciverForm} packageForm={this.packageForm} />, <Recommend />, <CheckOut />, <Payment />, <Confirm />];
+        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Payment />, <Confirm />];
         return (
             <Form
             name="orderForm"
