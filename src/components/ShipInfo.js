@@ -22,7 +22,7 @@ class ShipInfoForm extends Component {
          >
            <h3>Sender Information</h3>
            <Row gutter={10}>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="sender-last-name"
                >
@@ -38,7 +38,7 @@ class ShipInfoForm extends Component {
                    )(<Input placeholder="Last Name" />)}
                </Form.Item>
              </Col>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }}  span={9} push={3}>
                <Form.Item
                    name="sender-first-name"
                >
@@ -55,7 +55,7 @@ class ShipInfoForm extends Component {
            </Row>
 
            <Row gutter={10}>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="sender-phone-number"
                >
@@ -70,7 +70,7 @@ class ShipInfoForm extends Component {
                    )(<Input placeholder="Phone Number" />)}
                </Form.Item>
              </Col>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="sender-email"
                >
@@ -86,7 +86,7 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row>
-             <Col span={18} push={3}>
+             <Col style={{ height: '50px' }} span={18} push={3}>
                <Form.Item
                    name="Street_Address_1"
                >
@@ -103,7 +103,7 @@ class ShipInfoForm extends Component {
            </Row>
 
            <Row>
-             <Col span={18} push={3}>
+             <Col style={{ height: '50px' }} span={18} push={3}>
                <Form.Item
                    name="Street_Address_2"
                >
@@ -113,7 +113,7 @@ class ShipInfoForm extends Component {
            </Row>
            <Row gutter={10}>
 
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="Zip_Code"
                >
@@ -131,7 +131,7 @@ class ShipInfoForm extends Component {
 
            <h3>Receiver Information</h3>
            <Row gutter={10}>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="receiver-last-name"
                >
@@ -147,7 +147,7 @@ class ShipInfoForm extends Component {
                  )(<Input placeholder="Last Name" />)}
                </Form.Item>
              </Col>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="receiver-first-name"
                >
@@ -163,7 +163,7 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row gutter={10}>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name='receiver-phone-number'
                >
@@ -178,7 +178,7 @@ class ShipInfoForm extends Component {
                  )(<Input placeholder="Phone Number" />)}
                </Form.Item>
              </Col>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="receiver-email"
                >
@@ -194,7 +194,7 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row>
-             <Col span={18} push={3}>
+             <Col style={{ height: '50px' }} span={18} push={3}>
                <Form.Item
                    name="receiver-address-1"
                >
@@ -210,7 +210,7 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row>
-             <Col span={18} push={3}>
+             <Col style={{ height: '50px' }} span={18} push={3}>
                <Form.Item
                    name="receiver-address-1"
                >
@@ -219,7 +219,7 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row gutter={10}>
-             <Col span={9} push={3}>
+             <Col style={{ height: '50px' }} span={9} push={3}>
                <Form.Item
                    name="receiver-zip-code"
                >
@@ -237,7 +237,7 @@ class ShipInfoForm extends Component {
 
            <h3>Package Information</h3>
            <Row gutter={10}>
-             <Col span={4} push={3}>
+             <Col style={{ height: '50px' }} span={4} push={3}>
                <Form.Item
                    name="length"
                >
@@ -251,7 +251,7 @@ class ShipInfoForm extends Component {
                  }) (<Input placeholder="Length(cm)" />)}
                </Form.Item>
              </Col>
-             <Col span={4} push={3}>
+             <Col style={{ height: '50px' }} span={4} push={3}>
                <Form.Item
                    name="width"
                >
@@ -265,7 +265,7 @@ class ShipInfoForm extends Component {
                  }) (<Input placeholder="Width(cm)" />)}
                </Form.Item>
              </Col>
-             <Col span={5} push={3}>
+             <Col style={{ height: '50px' }} span={5} push={3}>
                <Form.Item
                    name="height"
                >
@@ -280,7 +280,7 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
 
-             <Col span={5} push={3}>
+             <Col style={{ height: '50px' }} span={5} push={3}>
                <Form.Item
                    name="weight"
                >
@@ -296,13 +296,13 @@ class ShipInfoForm extends Component {
              </Col>
            </Row>
            <Row>
-             <Col span={5} push={3}>
+             <Col style={{ height: '50px' }} span={5} push={3}>
                <Form.Item
                    name="RobotOrDrone"
                    rules={[
                      {
                        required: true,
-                       message: "Robot Or Drone"
+                       message: "Choose your carrier type"
                      }
                    ]}
                >
