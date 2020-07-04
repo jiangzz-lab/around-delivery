@@ -6,16 +6,16 @@ class CheckOut extends Component {
         return (
             <div>
                 <Descriptions title="Receiver Info">
-                    <Descriptions.Item label="Name">haha</Descriptions.Item>
-                    <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+                    <Descriptions.Item label="Name">Apple</Descriptions.Item>
+                    <Descriptions.Item label="Telephone">xxxxxxxxxx</Descriptions.Item>
                     <Descriptions.Item label="Remark"></Descriptions.Item>
                     <Descriptions.Item label="Address">
-                        No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+                        One Apple Park Way, Cupertino, CA 95014
                     </Descriptions.Item>
                 </Descriptions>
                 <Descriptions title="Sender Info">
-                    <Descriptions.Item label="Name">Your friend</Descriptions.Item>
-                    <Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
+                    <Descriptions.Item label="Name">Google</Descriptions.Item>
+                    <Descriptions.Item label="Telephone">xxxxxxxx</Descriptions.Item>
                     <Descriptions.Item label="Email">xxxx@gmail.com</Descriptions.Item>
                     <Descriptions.Item label="Address">
                         1600 Amphitheatre Pkwy, Mountain View, CA 94043
