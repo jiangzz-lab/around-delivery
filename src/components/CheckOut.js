@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Descriptions } from 'antd';
+import Payment from "./Payment";
 
 class CheckOut extends Component {
     render() {
@@ -24,9 +25,12 @@ class CheckOut extends Component {
                 </Descriptions>
                 <Descriptions title="Package Info">
                     <Descriptions.Item label="Delivery Time">1h</Descriptions.Item>
-                    <Descriptions.Item label="Delivery Fee">$18</Descriptions.Item>
+                    <Descriptions.Item label="Delivery Fee">$20</Descriptions.Item>
                     <Descriptions.Item label="Carrier"> drone </Descriptions.Item>
                 </Descriptions>
+                <div>
+                    <Payment />
+                </div>
             </div>
         );
     }
