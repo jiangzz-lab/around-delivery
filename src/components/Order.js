@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import ShipInfo from "./ShipInfo";
 import Recommend from "./Recommend";
 import CheckOut from "./CheckOut";
-import Payment from "./Payment";
 import Confirm from "./Confirm";
 
 import { Steps, Button, message } from 'antd';
@@ -22,10 +21,6 @@ const steps = [
     {
         title: 'Review & Check out',
         content: 'Review',
-    },
-    {
-        title: 'Payment',
-        content: 'Payment',
     },
     {
         title: 'Confirmation',
@@ -56,7 +51,7 @@ class Order extends Component {
         const { current } = this.state;
         {/* stepContent is an Array that saves corresponding component to render
          as step content for each step*/}
-        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Payment />, <Confirm />];
+        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Confirm />];
         return (
             <div>
                 <div className="order-steps">

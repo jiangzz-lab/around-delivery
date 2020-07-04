@@ -42,7 +42,7 @@ function Payment() {
           name  = "Buy Deliver Around"
           amount = {product.price*100}
           >
-            <button className = "btn-large pink" > Click to pay ${product.price} </button>
+            <button className = "payment-button" type="primary"> Click to pay ${product.price} </button>
         </StripeCheckout>
       {/* </header> */}
     </div>
