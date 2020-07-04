@@ -37,12 +37,13 @@ function Payment() {
       
       {/* <header> */}
         <StripeCheckout 
-          stripeKey = "pk_test_51GzS1qDEz20aCkSvkHFcDZezPnwnWA31xk3PquMhR2hI4skg5zTnDIhJgQsVsQpFt7lrxpUB3tiFPQrdCliBKkMx008Hz3fjDw"
+          stripeKey = "pk_test_51GzS1qDEz20aCkSvlkqCYnGwQf9y7OB7zwU8PlFmk20ZIE52yjzntYGvTp5gPQXz5FUGPdD1utSTqggyO4CT961500a94PMsU5"
           token = "makePayment" 
           name  = "Buy Deliver Around"
           amount = {product.price*100}
           >
-            <button className = "payment-button" type="primary"> Click to pay ${product.price} </button>
+            {/* <button className = "payment-button" type="primary"> Click to pay ${product.price} </button> */}
+            <button className = "btn-large blue" > Buy Deliver Around for ${product.price} </button>
         </StripeCheckout>
       {/* </header> */}
     </div>
