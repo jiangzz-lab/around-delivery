@@ -15,6 +15,7 @@
 
 
 
-.btn-large pink{
-    float: left; 
+.payment-button {
+    margin-right: 10px;
+    margin-left: auto;
 }

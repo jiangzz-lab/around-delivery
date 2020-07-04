@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 // import logo from './logo.svg';
 // import '../App.css';
 import StripeCheckout from "react-stripe-checkout"
-import payment_img from "../assets/images/paymentBG.jpg"
-
 
 function Payment() {
 
@@ -44,9 +42,8 @@ function Payment() {
           name  = "Buy Deliver Around"
           amount = {product.price*100}
           >
-            <button className = "btn-large pink" > Buy Deliver Around for ${product.price} </button>
+            <button className = "payment-button" type="primary"> Click to pay ${product.price} </button>
         </StripeCheckout>
-        <img src= {payment_img} className="paymentBG"/>
       {/* </header> */}
     </div>
   );

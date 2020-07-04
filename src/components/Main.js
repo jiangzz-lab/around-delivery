@@ -13,16 +13,16 @@ class Main extends Component {
                 <Switch>
                     <Route path = '/register'>
                         <div>
-                            <Register />
                             <PhotoBooth />
+                            <Register />
                         </div>
                     </Route>
                 </Switch>
                 <Switch>
                     <Route path = '/login'>
                         <div>
-                            <Login />
                             <PhotoBooth />
+                            <Login />
                         </div>
                     </Route>
                 </Switch>

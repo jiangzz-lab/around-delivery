@@ -43,9 +43,11 @@ class LoginForm extends Component {
                     }
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Login
-                    </Button>
+                    <Link to="/home">
+                        <Button type="primary" htmlType="submit">
+                            Login
+                        </Button>
+                    </Link>
                     Or <Link to="/register">register now!</Link>
                 </Form.Item>
             </Form>
