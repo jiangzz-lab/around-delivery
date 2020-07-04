@@ -6,7 +6,7 @@ class Confirm extends Component {
         return (
             <Result
                 icon={<Icon type="smile" theme="twoTone" />}
-                title="Great, we have done all the operations!"
+                title="Great, we have placed your order!"
                 extra={<Button type="primary">Tracking</Button>}
             />
         );

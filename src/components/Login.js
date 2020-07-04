@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Form, Input, Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
     render() {
@@ -45,6 +46,7 @@ class LoginForm extends Component {
                     <Button type="primary" htmlType="submit">
                         Login
                     </Button>
+                    Or <Link to="/register">register now!</Link>
                 </Form.Item>
             </Form>
         );

@@ -7,15 +7,15 @@ class PhotoBooth extends Component {
         return (
             <Carousel autoplay>
                 <div>
-                    <img src={logo} className="photos"/>
+                    <img src={logo} alt="logo" className="photos"/>
                     <h3> Photo 1 </h3>
                 </div>
                 <div>
-                    <img src={logo} className="photos"/>
+                    <img src={logo} alt="logo" className="photos"/>
                     <h3>Photo 2</h3>
                 </div>
                 <div>
-                    <img src={logo} className="photos"/>
+                    <img src={logo} alt="logo" className="photos"/>
                     <h3>Photo 3</h3>
                 </div>
             </Carousel>
