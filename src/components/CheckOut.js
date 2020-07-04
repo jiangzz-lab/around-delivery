@@ -27,6 +27,8 @@ class CheckOut extends Component {
                     <Descriptions.Item label="Carrier"> drone </Descriptions.Item>
                 </Descriptions>
             </div>
+
+            
         );
     }
 }
