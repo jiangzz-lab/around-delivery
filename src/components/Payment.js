@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 // import logo from './logo.svg';
 // import '../App.css';
+import { Button } from 'antd';
 import StripeCheckout from "react-stripe-checkout"
 
 function Payment() {
@@ -42,7 +43,7 @@ function Payment() {
           name  = "Buy Deliver Around"
           amount = {product.price*100}
           >
-            <button className = "payment-button" type="primary"> Click to pay ${product.price} </button>
+          <Button className = "payment-button" type="primary"> Click to pay ${product.price} </Button>
         </StripeCheckout>
       {/* </header> */}
     </div>

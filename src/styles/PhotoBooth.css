@@ -1,10 +1,10 @@
 .ant-carousel .slick-slide {
+    margin-bottom: 30px;
     text-align: center;
-    height: 280px;
-    width: 200px;
+    height: 260px;
+    width: 180px;
     line-height: 160px;
     background-color: #fafafa;
-    //background: #d3d3d3;
     overflow: hidden;
 }
 
@@ -24,5 +24,5 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 25%;
+    width: 20%;
 }
