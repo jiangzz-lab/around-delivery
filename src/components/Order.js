@@ -37,26 +37,30 @@ class Order extends Component {
         this.shipInfo = React.createRef();
     }
 
+    handleShipInfo = () => {
+        this.shipInfo.current.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                const { getOrderInfo } = this.props;
+                const newOrderInfo = Object.assign(values, {
+                    number: Math.floor(Math.random() * 1000),
+                    status: 0,
+                    deliveryTime: 2,
+                });
+                console.log('new order Info -->', newOrderInfo);
+                getOrderInfo(newOrderInfo);
+                const current = this.state.current + 1;
+                this.setState({current});
+            } else {
+                message.error('Please enter necessary information!');
+            }
+        });
+    }
+
     next() {
         console.log(this.state.current);
         if (this.state.current === 0) {
-            this.shipInfo.current.validateFieldsAndScroll((err, values) => {
-                if (!err) {
-                    console.log('Received values of form: ', values);
-                    const { getOrderInfo } = this.props;
-                    const newOrderInfo = Object.assign(values, {
-                        number: Math.floor(Math.random() * 1000),
-                        status: 0,
-                        deliveryTime: 2,
-                    });
-                    console.log('new order Info -->', newOrderInfo);
-                    getOrderInfo(newOrderInfo);
-                    const current = this.state.current + 1;
-                    this.setState({current});
-                } else {
-                    message.error('Please enter necessary information!');
-                }
-            });
+            this.handleShipInfo();
         } else {
             const current = this.state.current + 1;
             this.setState({current});
@@ -76,7 +80,7 @@ class Order extends Component {
         const stepContent = [<ShipInfo
             ref={this.shipInfo}
             newOrder={this.props.newOrder}
-        />, <Recommend />, <CheckOut />, <Confirm />];
+        />, <Recommend />, <CheckOut />, this.props.newOrder === undefined ?<Confirm /> : <Confirm orderNumber={this.props.newOrder.number}/>];
 
         return (
             <div>
