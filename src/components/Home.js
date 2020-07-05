@@ -38,9 +38,9 @@ class Home extends Component {
             case "null" :
                 return null;
             case "tracking":
-                if (orderList.length === 0) { return <p>You have no order to track!</p>; }
+                if (orderList.length === 0) { return <p className='tracking-status'>You have no order to track!</p>; }
                 // console.log('when render tracking -->', this.state.orders);
-                if (orderToTrack === undefined) { return <p> You don't have this order! </p>; }
+                if (orderToTrack === undefined) { return <p className='tracking-status'> You don't have this order! </p>; }
                 return <TrackingPage
                         orderInfo={this.state.orders[this.state.orderToTrack]}
                         />;
@@ -76,16 +76,13 @@ class Home extends Component {
             return;
         }
         const orderList = this.state.orders;
-        let orderToTrack;
+        let orderToTrack = undefined;
         for (let i = 0; i < orderList.length; i++) {
-            console.log(value);
-            console.log(i);
-            console.log(orderList[i]['number']);
             if (orderList[i]['number'] === Number(value)){
                 orderToTrack = i;
-            } else {
-                orderToTrack = undefined;
+                break;
             }
+            orderToTrack = undefined;
         }
         this.setState({
             visible: false,

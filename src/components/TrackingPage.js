@@ -2,24 +2,6 @@ import React, {Component} from 'react';
 import { Steps, Icon } from 'antd';
 
 const { Step } = Steps;
-const steps = [
-    {
-        title: 'Order confirmed',
-        content: 'confirmed',
-    },
-    {
-        title: 'Picked up',
-        content: 'picked up',
-    },
-    {
-        title: 'In transit',
-        content: 'in transit',
-    },
-    {
-        title: 'Delivered',
-        content: 'delivered',
-    },
-];
 
 const statusString = ['confirmed', 'picked up', 'in transit', 'delivered'];
 

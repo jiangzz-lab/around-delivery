@@ -69,10 +69,10 @@ class Order extends Component {
     }
 
     render() {
-        {/* current notes the current step of the order process*/}
+        /* current notes the current step of the order process*/
         const { current } = this.state;
-        {/* stepContent is an Array that saves corresponding component to render
-         as step content for each step*/}
+        /* stepContent is an Array that saves corresponding component to render
+         as step content for each step*/
         const stepContent = [<ShipInfo
             ref={this.shipInfo}
             newOrder={this.props.newOrder}
