@@ -90,10 +90,10 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
-           <Row>
+           <Row gutter={10}>
              <Col style={{ height: '50px' }} span={12} push={3}>
                <Form.Item
-                   name="Street_Address_1"
+                   name="Street_Address"
                >
                    {getFieldDecorator('sender-address', {
                        rules: [
@@ -192,7 +192,7 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
-           <Row>
+           <Row gutter={10}>
              <Col style={{ height: '50px' }} span={12} push={3}>
                <Form.Item
                    name="receiver-address-1"
