@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import ShipInfo from "./ShipInfo";
 import Recommend from "./Recommend";
 import CheckOut from "./CheckOut";
-import Payment from "./Payment";
 import Confirm from "./Confirm";
 
 import { Steps, Button, message } from 'antd';
@@ -22,10 +21,6 @@ const steps = [
     {
         title: 'Review & Check out',
         content: 'Review',
-    },
-    {
-        title: 'Payment',
-        content: 'Payment',
     },
     {
         title: 'Confirmation',
@@ -56,7 +51,7 @@ class Order extends Component {
         const { current } = this.state;
         {/* stepContent is an Array that saves corresponding component to render
          as step content for each step*/}
-        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Payment />, <Confirm />];
+        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Confirm />];
         return (
             <div>
                 <div className="order-steps">
@@ -72,19 +67,19 @@ class Order extends Component {
                 </div>
 
                 <div className="steps-action">
+                    {current > 0 && (
+                        <Button className='back-button' style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+                            Back
+                        </Button>
+                    )}
                     {current < steps.length - 1 && (
-                        <Button type="primary" onClick={() => this.next()}>
+                        <Button className='next-button' type="primary" onClick={() => this.next()}>
                             Next
                         </Button>
                     )}
                     {current === steps.length - 1 && (
-                        <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                        <Button className='done-button' type="primary" onClick={() => message.success('Processing complete!')}>
                             Done
-                        </Button>
-                    )}
-                    {current > 0 && (
-                        <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                            Back
                         </Button>
                     )}
                 </div>

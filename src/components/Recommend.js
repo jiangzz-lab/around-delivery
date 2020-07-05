@@ -15,9 +15,9 @@ class Recommend extends Component {
         };
     
         const deliveryOptions = [
-          { style: radioStyle, content: "Option1: Time, Free, Carrier", value: 1 },
-          { style: radioStyle, content: "Option2: Time, Free, Carrier", value: 2 },
-          { style: radioStyle, content: "Option3: Time, Free, Carrier", value: 3 }
+          { style: radioStyle, content: "Option1: Time, Fee, Carrier", value: 1 },
+          { style: radioStyle, content: "Option2: Time, Fee, Carrier", value: 2 },
+          { style: radioStyle, content: "Option3: Time, Fee, Carrier", value: 3 }
         ];
         return (
           <Form

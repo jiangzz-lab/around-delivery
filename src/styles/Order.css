@@ -29,3 +29,18 @@
     margin-top: 10px;
     margin-bottom: auto;
 }
+
+.back-button {
+    margin-right: 10px;
+    margin-left: auto;
+}
+
+.next-button {
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+.done-button {
+    margin-left: 10px;
+    margin-right: auto;
+}

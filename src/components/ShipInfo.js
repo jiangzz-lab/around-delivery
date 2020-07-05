@@ -2,296 +2,9 @@ import "antd/dist/antd.css";
 import { Input, Col, Row, Form, Radio } from "antd";
 import React, {Component} from 'react';
 
-class ShipInfo extends Component {
+class ShipInfoForm extends Component {
   state = {
     value: 1
-  };
-  SenderInfoForm = () => {
-    
-    return (
-      <Form
-        name="SenderInfoForm"
-        initialValues={{
-          remember: true
-        }}
-
-      >
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="Last Name"
-              rules={[
-                {
-                  required: true,
-                  message: "Last Name"
-                }
-              ]}
-            >
-              <Input placeholder="Last Name" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="First_Name"
-              rules={[
-                {
-                  required: true,
-                  message: "First Name"
-                }
-              ]}
-            >
-              <Input placeholder="First Name" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="Phone Number"
-              rules={[
-                {
-                  required: true,
-                  message: "Phone Number"
-                }
-              ]}
-            >
-              <Input placeholder="Phone Number" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="Email Address"
-              rules={[
-                {
-                  required: true,
-                  message: "Email Address"
-                }
-              ]}
-            >
-              <Input placeholder="Email Address" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={18}>
-            <Form.Item
-              name="Street_Address_1"
-              rules={[
-                {
-                  required: true,
-                  message: "Street Address 1"
-                }
-              ]}
-            >
-              <Input placeholder="Street Address 1" />
-            </Form.Item>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={18}>
-            <Form.Item
-              name="Street_Address_2"
-              rules={[
-                {
-                  required: false,
-                  message: "Street Address 2"
-                }
-              ]}
-            >
-              <Input placeholder="Street Address 2" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="City"
-              rules={[
-                {
-                  required: true,
-                  message: "City"
-                }
-              ]}
-            >
-              <Input placeholder="City" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="Zip_Code"
-              rules={[
-                {
-                  required: true,
-                  message: "Zip Code"
-                }
-              ]}
-            >
-              <Input placeholder="Zip Code" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="State"
-              rules={[
-                {
-                  required: true,
-                  message: "State"
-                }
-              ]}
-            >
-              <Input placeholder="State" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="Country"
-              rules={[
-                {
-                  required: true,
-                  message: "Country"
-                }
-              ]}
-            >
-              <Input placeholder="Country" />
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    );
-  };
-
-  ReceiverInfoForm = () => {
-    
-
-    return (
-      <Form
-        name="ReceiverInfoForm"
-        initialValues={{
-          remember: true
-        }}
-
-      >
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="Last Name"
-              rules={[
-                {
-                  required: true,
-                  message: "Last Name"
-                }
-              ]}
-            >
-              <Input placeholder="Last Name" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="First_Name"
-              rules={[
-                {
-                  required: true,
-                  message: "First Name"
-                }
-              ]}
-            >
-              <Input placeholder="First Name" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={18}>
-            <Form.Item
-              name="Street_Address_1"
-              rules={[
-                {
-                  required: true,
-                  message: "Street Address 1"
-                }
-              ]}
-            >
-              <Input placeholder="Street Address 1" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={18}>
-            <Form.Item
-              name="Street_Address_2"
-              rules={[
-                {
-                  required: false,
-                  message: "Street Address 2"
-                }
-              ]}
-            >
-              <Input placeholder="Street Address 2" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="City"
-              rules={[
-                {
-                  required: true,
-                  message: "City"
-                }
-              ]}
-            >
-              <Input placeholder="City" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="Zip_Code"
-              rules={[
-                {
-                  required: true,
-                  message: "Zip Code"
-                }
-              ]}
-            >
-              <Input placeholder="Zip Code" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col span={9}>
-            <Form.Item
-              name="State"
-              rules={[
-                {
-                  required: true,
-                  message: "State"
-                }
-              ]}
-            >
-              <Input placeholder="State" />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="Country"
-              rules={[
-                {
-                  required: true,
-                  message: "Country"
-                }
-              ]}
-            >
-              <Input placeholder="Country" />
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    );
   };
 
   onRadioChange = e => {
@@ -301,109 +14,314 @@ class ShipInfo extends Component {
     });
   };
 
-  PackageInfoForm = () => {
+   render() {
+       const { getFieldDecorator } = this.props.form;
+     return (
+         <Form
+             name="ShipInfoForm"
+         >
+           <h3>Sender Information</h3>
+           <Row gutter={10}>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="sender-last-name"
+               >
+                   {getFieldDecorator(
+                       'sender-last-name', {
+                           rules : [
+                               {
+                                   required: true,
+                                   message: 'Please input your last name!',
+                               },
+                           ]
+                       }
+                   )(<Input placeholder="Last Name" />)}
+               </Form.Item>
+             </Col>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="sender-first-name"
+               >
+                   {getFieldDecorator('sender-first-name', {
+                       rules: [
+                           {
+                               required: true,
+                               message: 'Please input your first name!',
+                           }
+                       ]
+                   })(<Input placeholder="First Name" />)}
+               </Form.Item>
+             </Col>
+           </Row>
 
-    return (
-      <Form
-        name="PackageInfoForm"
-        initialValues={{
-          remember: true
-        }}
+           <Row gutter={10}>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="sender-phone-number"
+               >
+                   {getFieldDecorator('sender-phone-number', {
+                       rules: [
+                           {
+                               required: true,
+                               message: "Please enter your phone number!",
+                           }
+                           ]
+                   }
+                   )(<Input placeholder="Phone Number" />)}
+               </Form.Item>
+             </Col>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="sender-email"
+               >
+                   {getFieldDecorator('sender-email', {
+                       rules: [
+                           {
+                               required: true,
+                               message: "Please enter your email!",
+                           }
+                       ]
+                   }) (<Input placeholder="Email Address" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row>
+             <Col span={18} push={3}>
+               <Form.Item
+                   name="Street_Address_1"
+               >
+                   {getFieldDecorator('sender-address', {
+                       rules: [
+                           {
+                               required: true,
+                               message: "Please enter pick-up address!",
+                           }
+                       ]
+                   }) (<Input placeholder="Street Address 1" />)}
+               </Form.Item>
+             </Col>
+           </Row>
 
-      >
-        <Row gutter={10}>
-          <Col span={4}>
-            <Form.Item
-              name="Length(cm)"
-              rules={[
-                {
-                  required: true,
-                  message: "Length(cm)"
-                }
-              ]}
-            >
-              <Input placeholder="Length(cm)" />
-            </Form.Item>
-          </Col>
-          <Col span={4}>
-            <Form.Item
-              name="Width(cm)"
-              rules={[
-                {
-                  required: true,
-                  message: "Width(cm)"
-                }
-              ]}
-            >
-              <Input placeholder="Width(cm)" />
-            </Form.Item>
-          </Col>
-          <Col span={5}>
-            <Form.Item
-              name="Height(cm)"
-              rules={[
-                {
-                  required: true,
-                  message: "Height(cm)"
-                }
-              ]}
-            >
-              <Input placeholder="Height(cm)" />
-            </Form.Item>
-          </Col>
+           <Row>
+             <Col span={18} push={3}>
+               <Form.Item
+                   name="Street_Address_2"
+               >
+                 <Input placeholder="Street Address 2" />
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row gutter={10}>
 
-          <Col span={5}>
-            <Form.Item
-              name="Weight(kg)"
-              rules={[
-                {
-                  required: true,
-                  message: "Weight(kg)"
-                }
-              ]}
-            >
-              <Input placeholder="Weight(kg)" />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={5}>
-            <Form.Item
-              name="RobotOrDrone"
-              rules={[
-                {
-                  required: true,
-                  message: "Robot Or Drone"
-                }
-              ]}
-            >
-              <Radio.Group
-                onChange={this.onRadioChange}
-                value={this.state.value}
-              >
-                <Radio value={1}>Robot</Radio>
-                <Radio value={2}>Drone</Radio>
-              </Radio.Group>
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    );
-  };
-    render() {
-        return (
-            <div>
-              <h3>Sender Information</h3>
-              <this.SenderInfoForm/>
-              <h3>Receiver Information</h3>
-              <this.ReceiverInfoForm/>
-              <h3>Package Information</h3>
-              <this.PackageInfoForm/>
-            </div>
-        );
-    }
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="Zip_Code"
+               >
+                   {getFieldDecorator('sender-zip-code', {
+                       rules: [
+                           {
+                               required: true,
+                               message: "Please enter your zip code!",
+                           }
+                       ]
+                   }) (<Input placeholder="Zip code" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+
+           <h3>Receiver Information</h3>
+           <Row gutter={10}>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="receiver-last-name"
+               >
+                 {getFieldDecorator(
+                     'receiver-last-name', {
+                       rules : [
+                         {
+                           required: true,
+                           message: 'Please input receiver last name!',
+                         },
+                       ]
+                     }
+                 )(<Input placeholder="Last Name" />)}
+               </Form.Item>
+             </Col>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="receiver-first-name"
+               >
+                 {getFieldDecorator('receiver-first-name', {
+                   rules: [
+                     {
+                       required: true,
+                       message: 'Please input receiver first name!',
+                     }
+                   ]
+                 })(<Input placeholder="First Name" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row gutter={10}>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name='receiver-phone-number'
+               >
+                 {getFieldDecorator('receiver-phone-number', {
+                       rules: [
+                         {
+                           required: true,
+                           message: "Please enter receiver phone number!",
+                         }
+                       ]
+                     }
+                 )(<Input placeholder="Phone Number" />)}
+               </Form.Item>
+             </Col>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="receiver-email"
+               >
+                 {getFieldDecorator('receiver-email', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter receiver email!",
+                     }
+                   ]
+                 }) (<Input placeholder="Email Address" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row>
+             <Col span={18} push={3}>
+               <Form.Item
+                   name="receiver-address-1"
+               >
+                 {getFieldDecorator('receiver-address-1', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter destination!",
+                     }
+                   ]
+                 }) (<Input placeholder="Street Address 1" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row>
+             <Col span={18} push={3}>
+               <Form.Item
+                   name="receiver-address-1"
+               >
+                 <Input placeholder="Street Address 2" />
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row gutter={10}>
+             <Col span={9} push={3}>
+               <Form.Item
+                   name="receiver-zip-code"
+               >
+                 {getFieldDecorator('receiver-zip-code', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter receiver zip code!",
+                     }
+                   ]
+                 }) (<Input placeholder="Zip code" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+
+           <h3>Package Information</h3>
+           <Row gutter={10}>
+             <Col span={4} push={3}>
+               <Form.Item
+                   name="length"
+               >
+                 {getFieldDecorator('package-length', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter package length in cm!",
+                     }
+                   ]
+                 }) (<Input placeholder="Length(cm)" />)}
+               </Form.Item>
+             </Col>
+             <Col span={4} push={3}>
+               <Form.Item
+                   name="width"
+               >
+                 {getFieldDecorator('package-width', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter package width in cm!",
+                     }
+                   ]
+                 }) (<Input placeholder="Width(cm)" />)}
+               </Form.Item>
+             </Col>
+             <Col span={5} push={3}>
+               <Form.Item
+                   name="height"
+               >
+                 {getFieldDecorator('package-height', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter package height in cm!",
+                     }
+                   ]
+                 }) (<Input placeholder="Height(cm)" />)}
+               </Form.Item>
+             </Col>
+
+             <Col span={5} push={3}>
+               <Form.Item
+                   name="weight"
+               >
+                 {getFieldDecorator('package-weight', {
+                   rules: [
+                     {
+                       required: true,
+                       message: "Please enter package weight in kg!",
+                     }
+                   ]
+                 }) (<Input placeholder="Weight(kg)" />)}
+               </Form.Item>
+             </Col>
+           </Row>
+           <Row>
+             <Col span={5} push={3}>
+               <Form.Item
+                   name="RobotOrDrone"
+                   rules={[
+                     {
+                       required: true,
+                       message: "Robot Or Drone"
+                     }
+                   ]}
+               >
+                 <Radio.Group
+                     onChange={this.onRadioChange}
+                     value={this.state.value}
+                 >
+                   <Radio value={1}>Robot</Radio>
+                   <Radio value={2}>Drone</Radio>
+                 </Radio.Group>
+               </Form.Item>
+             </Col>
+           </Row>
+         </Form>
+     );
+   }
 }
 
+const ShipInfo = Form.create()(ShipInfoForm);
 export default ShipInfo;
 
 
