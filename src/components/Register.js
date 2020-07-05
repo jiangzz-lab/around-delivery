@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class RegistrationForm extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
+        console.log(this.props.form);
 
         const formItemLayout = {
             labelCol: {
