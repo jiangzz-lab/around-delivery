@@ -16,6 +16,7 @@ class ShipInfoForm extends Component {
 
    render() {
        const { getFieldDecorator } = this.props.form;
+       const { newOrder } = this.props;
      return (
          <Form
              name="ShipInfoForm"
@@ -33,7 +34,8 @@ class ShipInfoForm extends Component {
                                    required: true,
                                    message: 'Please input your last name!',
                                },
-                           ]
+                           ],
+                         initialValue: newOrder === undefined ? undefined : newOrder['sender-last-name'],
                        }
                    )(<Input placeholder="Last Name" />)}
                </Form.Item>
@@ -47,8 +49,9 @@ class ShipInfoForm extends Component {
                            {
                                required: true,
                                message: 'Please input your first name!',
-                           }
-                       ]
+                           },
+                       ],
+                     initialValue: newOrder === undefined ? undefined : newOrder['sender-first-name'],
                    })(<Input placeholder="First Name" />)}
                </Form.Item>
              </Col>
@@ -65,7 +68,8 @@ class ShipInfoForm extends Component {
                                required: true,
                                message: "Please enter your phone number!",
                            }
-                           ]
+                           ],
+                         initialValue: newOrder === undefined ? undefined : newOrder['sender-phone-number'],
                    }
                    )(<Input placeholder="Phone Number" />)}
                </Form.Item>
@@ -80,7 +84,8 @@ class ShipInfoForm extends Component {
                                required: true,
                                message: "Please enter your email!",
                            }
-                       ]
+                       ],
+                     initialValue: newOrder === undefined ? undefined : newOrder['sender-email'],
                    }) (<Input placeholder="Email Address" />)}
                </Form.Item>
              </Col>
@@ -96,7 +101,8 @@ class ShipInfoForm extends Component {
                                required: true,
                                message: "Please enter pick-up address!",
                            }
-                       ]
+                       ],
+                     initialValue: newOrder === undefined ? undefined : newOrder['sender-address'],
                    }) (<Input placeholder="Street Address 1" />)}
                </Form.Item>
              </Col>
@@ -107,7 +113,9 @@ class ShipInfoForm extends Component {
                <Form.Item
                    name="Street_Address_2"
                >
-                 <Input placeholder="Street Address 2" />
+                 {getFieldDecorator('sender-address-2', {
+                   initialValue: newOrder === undefined ? undefined : newOrder['sender-address-2'],
+                 })(<Input placeholder="Street Address 2" />)}
                </Form.Item>
              </Col>
            </Row>
@@ -123,7 +131,8 @@ class ShipInfoForm extends Component {
                                required: true,
                                message: "Please enter your zip code!",
                            }
-                       ]
+                       ],
+                     initialValue: newOrder === undefined ? undefined : newOrder['sender-zip-code'],
                    }) (<Input placeholder="Zip code" />)}
                </Form.Item>
              </Col>
@@ -142,7 +151,8 @@ class ShipInfoForm extends Component {
                            required: true,
                            message: 'Please input receiver last name!',
                          },
-                       ]
+                       ],
+                       initialValue: newOrder === undefined ? undefined : newOrder['receiver-last-name'],
                      }
                  )(<Input placeholder="Last Name" />)}
                </Form.Item>
@@ -157,7 +167,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: 'Please input receiver first name!',
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-first-name'],
                  })(<Input placeholder="First Name" />)}
                </Form.Item>
              </Col>
@@ -173,7 +184,8 @@ class ShipInfoForm extends Component {
                            required: true,
                            message: "Please enter receiver phone number!",
                          }
-                       ]
+                       ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-phone-number'],
                      }
                  )(<Input placeholder="Phone Number" />)}
                </Form.Item>
@@ -188,7 +200,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter receiver email!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-email'],
                  }) (<Input placeholder="Email Address" />)}
                </Form.Item>
              </Col>
@@ -204,7 +217,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter destination!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-address-1'],
                  }) (<Input placeholder="Street Address 1" />)}
                </Form.Item>
              </Col>
@@ -229,7 +243,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter receiver zip code!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-zip-code'],
                  }) (<Input placeholder="Zip code" />)}
                </Form.Item>
              </Col>
@@ -247,7 +262,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter package length in cm!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['package-length'],
                  }) (<Input placeholder="Length(cm)" />)}
                </Form.Item>
              </Col>
@@ -261,7 +277,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter package width in cm!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['package-width'],
                  }) (<Input placeholder="Width(cm)" />)}
                </Form.Item>
              </Col>
@@ -275,7 +292,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter package height in cm!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['package-height'],
                  }) (<Input placeholder="Height(cm)" />)}
                </Form.Item>
              </Col>
@@ -290,7 +308,8 @@ class ShipInfoForm extends Component {
                        required: true,
                        message: "Please enter package weight in kg!",
                      }
-                   ]
+                   ],
+                   initialValue: newOrder === undefined ? undefined : newOrder['package-weight'],
                  }) (<Input placeholder="Weight(kg)" />)}
                </Form.Item>
              </Col>

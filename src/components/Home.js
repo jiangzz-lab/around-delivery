@@ -10,11 +10,8 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderInfo: {
-                number: "1234",
-                status: 1,
-                deliveryTime: 1,
-            },
+            orders: [],
+            orderToTrack: 0,
             display:"null",
         }
     }
@@ -25,16 +22,32 @@ class Home extends Component {
         })
     }
 
+    getOrderInfo = (newOrder) => {
+        let currentOrderList = this.state.orders.slice();
+        const newOrderList = currentOrderList.concat(newOrder);
+       // console.log('new orderList -->', newOrderList);
+        this.setState({
+            orders: newOrderList,
+        })
+    }
+
     renderBody = () => {
+        const orderList = this.state.orders;
+        const { orderToTrack } = this.state;
         switch(this.state.display) {
             case "null" :
                 return null;
             case "tracking":
+                if (orderList.length === 0) { return <p>You have no order to track!</p>; }
+                // console.log('when render tracking -->', this.state.orders);
+                if (orderToTrack === undefined) { return <p> You don't have this order! </p>; }
                 return <TrackingPage
-                        orderInfo={this.state.orderInfo}
+                        orderInfo={this.state.orders[this.state.orderToTrack]}
                         />;
             case "order":
-                return <Order />;
+                const length = orderList.length;
+                return length === 0 ? <Order getOrderInfo={this.getOrderInfo} newOrder={undefined}/>
+                   : <Order getOrderInfo={this.getOrderInfo} newOrder={orderList[length - 1]} />;
         }
     }
 
@@ -62,19 +75,27 @@ class Home extends Component {
             });
             return;
         }
+        const orderList = this.state.orders;
+        let orderToTrack;
+        for (let i = 0; i < orderList.length; i++) {
+            console.log(value);
+            console.log(i);
+            console.log(orderList[i]['number']);
+            if (orderList[i]['number'] === Number(value)){
+                orderToTrack = i;
+            } else {
+                orderToTrack = undefined;
+            }
+        }
         this.setState({
-            orderInfo: {
-                number : value,
-                status : 1,
-                deliveryTime: 1,
-            },
             visible: false,
+            orderToTrack: orderToTrack,
+            display: 'tracking',
         });
-        this.setDisplay("tracking");
     };
 
     handleClose = () => {
-        console.log(this.state.orderInfo);
+        console.log('when close the search bar -->', this.state.orders);
     }
 
     render() {

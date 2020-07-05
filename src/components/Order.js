@@ -34,11 +34,33 @@ class Order extends Component {
         this.state = {
             current: 0,
         };
+        this.shipInfo = React.createRef();
     }
 
     next() {
-        const current = this.state.current + 1;
-        this.setState({ current });
+        console.log(this.state.current);
+        if (this.state.current === 0) {
+            this.shipInfo.current.validateFieldsAndScroll((err, values) => {
+                if (!err) {
+                    console.log('Received values of form: ', values);
+                    const { getOrderInfo } = this.props;
+                    const newOrderInfo = Object.assign(values, {
+                        number: Math.floor(Math.random() * 1000),
+                        status: 0,
+                        deliveryTime: 2,
+                    });
+                    console.log('new order Info -->', newOrderInfo);
+                    getOrderInfo(newOrderInfo);
+                    const current = this.state.current + 1;
+                    this.setState({current});
+                } else {
+                    message.error('Please enter necessary information!');
+                }
+            });
+        } else {
+            const current = this.state.current + 1;
+            this.setState({current});
+        }
     }
 
     prev() {
@@ -51,7 +73,11 @@ class Order extends Component {
         const { current } = this.state;
         {/* stepContent is an Array that saves corresponding component to render
          as step content for each step*/}
-        const stepContent = [<ShipInfo />, <Recommend />, <CheckOut />, <Confirm />];
+        const stepContent = [<ShipInfo
+            ref={this.shipInfo}
+            newOrder={this.props.newOrder}
+        />, <Recommend />, <CheckOut />, <Confirm />];
+
         return (
             <div>
                 <div className="order-steps">
