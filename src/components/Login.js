@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class LoginForm extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
+        console.log(this.props.form);
 
         const formItemLayout = {
             labelCol: {
@@ -47,8 +48,7 @@ class LoginForm extends Component {
                         <Button type="primary" htmlType="submit">
                             Login
                         </Button>
-                    </Link>
-                    Or <Link to="/register">register now!</Link>
+                    </Link> Or go to <Link to="/register">register now!</Link>
                 </Form.Item>
             </Form>
         );

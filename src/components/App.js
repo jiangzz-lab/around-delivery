@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 
 import TopBar from "./TopBar";
 import Main from "./Main";
-import payment_img from "../assets/images/paymentBG.jpg"
-
+//import payment_img from "../assets/images/paymentBG.jpg"
 
 class App extends Component {
   render() {
