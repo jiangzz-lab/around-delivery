@@ -4,7 +4,7 @@ import Order from "./Order";
 
 import Tracking from './Tracking';
 
-import { Button, Icon, message } from "antd";
+import { Button, Icon } from "antd";
 import { Link, Route } from "react-router-dom";
 
 class Home extends Component {
