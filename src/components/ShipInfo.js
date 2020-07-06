@@ -90,10 +90,10 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
-           <Row>
-             <Col style={{ height: '50px' }} span={18} push={3}>
+           <Row gutter={10}>
+             <Col style={{ height: '50px' }} span={12} push={3}>
                <Form.Item
-                   name="Street_Address_1"
+                   name="Street_Address"
                >
                    {getFieldDecorator('sender-address', {
                        rules: [
@@ -103,39 +103,25 @@ class ShipInfoForm extends Component {
                            }
                        ],
                      initialValue: newOrder === undefined ? undefined : newOrder['sender-address'],
-                   }) (<Input placeholder="Street Address 1" />)}
+                   }) (<Input placeholder="Street Address" />)}
                </Form.Item>
              </Col>
-           </Row>
+               <Col style={{ height: '50px' }} span={6} push={3}>
+                   <Form.Item
+                       name="Zip_Code"
+                   >
+                       {getFieldDecorator('sender-zip-code', {
+                           rules: [
+                               {
+                                   required: true,
+                                   message: "Please enter your zip code!",
+                               }
+                           ],
+                           initialValue: newOrder === undefined ? undefined : newOrder['sender-zip-code'],
+                       }) (<Input placeholder="Zip code" />)}
+                   </Form.Item>
+               </Col>
 
-           <Row>
-             <Col style={{ height: '50px' }} span={18} push={3}>
-               <Form.Item
-                   name="Street_Address_2"
-               >
-                 {getFieldDecorator('sender-address-2', {
-                   initialValue: newOrder === undefined ? undefined : newOrder['sender-address-2'],
-                 })(<Input placeholder="Street Address 2" />)}
-               </Form.Item>
-             </Col>
-           </Row>
-           <Row gutter={10}>
-
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name="Zip_Code"
-               >
-                   {getFieldDecorator('sender-zip-code', {
-                       rules: [
-                           {
-                               required: true,
-                               message: "Please enter your zip code!",
-                           }
-                       ],
-                     initialValue: newOrder === undefined ? undefined : newOrder['sender-zip-code'],
-                   }) (<Input placeholder="Zip code" />)}
-               </Form.Item>
-             </Col>
            </Row>
 
            <h3>Receiver Information</h3>
@@ -206,8 +192,8 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
-           <Row>
-             <Col style={{ height: '50px' }} span={18} push={3}>
+           <Row gutter={10}>
+             <Col style={{ height: '50px' }} span={12} push={3}>
                <Form.Item
                    name="receiver-address-1"
                >
@@ -218,36 +204,25 @@ class ShipInfoForm extends Component {
                        message: "Please enter destination!",
                      }
                    ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-address-1'],
-                 }) (<Input placeholder="Street Address 1" />)}
+                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-address'],
+                 }) (<Input placeholder="Street Address" />)}
                </Form.Item>
              </Col>
-           </Row>
-           <Row>
-             <Col style={{ height: '50px' }} span={18} push={3}>
-               <Form.Item
-                   name="receiver-address-1"
-               >
-                 <Input placeholder="Street Address 2" />
-               </Form.Item>
-             </Col>
-           </Row>
-           <Row gutter={10}>
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name="receiver-zip-code"
-               >
-                 {getFieldDecorator('receiver-zip-code', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter receiver zip code!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-zip-code'],
-                 }) (<Input placeholder="Zip code" />)}
-               </Form.Item>
-             </Col>
+               <Col style={{ height: '50px' }} span={6} push={3}>
+                   <Form.Item
+                       name="receiver-zip-code"
+                   >
+                       {getFieldDecorator('receiver-zip-code', {
+                           rules: [
+                               {
+                                   required: true,
+                                   message: "Please enter receiver zip code!",
+                               }
+                           ],
+                           initialValue: newOrder === undefined ? undefined : newOrder['receiver-zip-code'],
+                       }) (<Input placeholder="Zip code" />)}
+                   </Form.Item>
+               </Col>
            </Row>
 
            <h3>Package Information</h3>

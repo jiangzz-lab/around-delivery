@@ -1,16 +1,17 @@
 .ant-carousel .slick-slide {
+    margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
-    height: 260px;
+    height: 320px;
     width: 180px;
     line-height: 160px;
     background-color: #fafafa;
     overflow: hidden;
 }
 
-.ant-carousel .slick-slide h3 {
-    color: black;
-}
+/*.ant-carousel .slick-slide h3 {*/
+    /*color: black;*/
+/*}*/
 
 /*.photos {*/
     /*pointer-events: none;*/
@@ -24,5 +25,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 200px;
     width: 20%;
 }
