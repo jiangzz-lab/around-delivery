@@ -3,9 +3,20 @@ import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
+    handleSubmit = e => {
+        e.preventDefault();
+        // console.log(this.props.form);
+        // console.log(this.props.form.getFieldsValue());
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+    };
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log(this.props.form);
+        // console.log(this.props.form);
 
         const formItemLayout = {
             labelCol: {
@@ -48,15 +59,13 @@ class LoginForm extends Component {
                             rules: [
                                 { required: true, message: 'Please input your password!'}
                             ]
-                        })(<Input />)
+                        })(<Input.Password />)
                     }
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
-                    <Link to="/home">
-                        <Button type="primary" htmlType="submit">
-                            Login
-                        </Button>
-                    </Link> Or go to <Link to="/register">register now!</Link>
+                    <Button type="primary" htmlType="submit">
+                        Login
+                    </Button> Or go to <Link to="/register">register now!</Link>
                 </Form.Item>
             </Form>
         );

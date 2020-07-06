@@ -3,9 +3,28 @@ import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 class RegistrationForm extends Component {
+    state = {
+        confirmDirty: false,
+    };
+
+    handleConfirmBlur = e => {
+        const { value } = e.target;
+        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        // console.log(this.props.form);
+        // console.log(this.props.form.getFieldsValue());
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+    };
+
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log(this.props.form);
 
         const formItemLayout = {
             labelCol: {
@@ -45,28 +64,34 @@ class RegistrationForm extends Component {
                         })(<Input />)
                     }
                 </Form.Item>
-                <Form.Item label="Password" hasFeedback>
+                <Form.Item label="password" hasFeedback>
                     {
-                        getFieldDecorator('Password', {
+                        getFieldDecorator('password', {
                             rules: [
                                 {
                                     required: true,
                                     message: 'Please input your password!'
+                                },
+                                {
+                                    validator: this.validateToNextPassword,
                                 }
-                            ]
-                        })(<Input />)
+                            ],
+                        })(<Input.Password />)
                     }
                 </Form.Item>
                 <Form.Item label="Confirm Password" hasFeedback>
                     {
-                        getFieldDecorator('Confirm Password', {
+                        getFieldDecorator('confirm', {
                             rules: [
                                 {
                                     required: true,
                                     message: 'Please verify your password'
-                                }
-                            ]
-                        })(<Input />)
+                                },
+                                {
+                                    validator: this.compareToFirstPassword,
+                                },
+                            ],
+                        })(<Input.Password onBlur={this.handleConfirmBlur} />)
                     }
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
@@ -78,6 +103,27 @@ class RegistrationForm extends Component {
             </Form>
         );
     }
+
+    validateToNextPassword = (rule, value, callback) => {
+        // console.log("password rule", rule);
+        // console.log("password value", value);
+        const { form } = this.props;
+        if (value && this.state.confirmDirty) {
+            form.validateFields(['confirm'], { force: true });
+        }
+        callback();
+    };
+
+    compareToFirstPassword = (rule, value, callback) => {
+        // console.log("confirm rule", rule);
+        // console.log("confirm value",value);
+        const { form } = this.props;
+        if (value && value !== form.getFieldValue('password')) {
+            callback('Two passwords that you enter is inconsistent!');
+        } else {
+            callback();
+        }
+    };
 }
 
 const Register = Form.create({ name: 'register' })(RegistrationForm);
