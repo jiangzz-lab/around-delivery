@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
+// import { API_ROOT} from "../constants";
 
 class RegistrationForm extends Component {
     state = {
