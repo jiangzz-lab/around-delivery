@@ -32,32 +32,6 @@ class Home extends Component {
             : <Order getOrderInfo={this.getOrderInfo} newOrder={orderList[length - 1]} />;
     }
 
-    handleSearch = value => {
-        if (value === "") {
-            message.warning({
-                content: 'Please enter your order number!',
-                className: 'tracking-warning',
-                style: {
-                    fontSize: "large"
-                },
-            });
-            return;
-        }
-        const orderList = this.state.orders;
-        let orderToTrack = undefined;
-        for (let i = 0; i < orderList.length; i++) {
-            if (orderList[i]['number'] === Number(value)){
-                orderToTrack = i;
-                break;
-            }
-            orderToTrack = undefined;
-        }
-        this.setState({
-            orderToTrack: orderToTrack,
-            display: 'tracking',
-        });
-    };
-
     render() {
         console.log(this.props);
         const { match } = this.props;
