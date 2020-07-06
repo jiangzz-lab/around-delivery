@@ -17,19 +17,16 @@ class Main extends Component {
                             <Register />
                         </div>
                     </Route>
-                </Switch>
-                <Switch>
+
                     <Route path = '/login'>
                         <div>
                             <PhotoBooth />
                             <Login />
                         </div>
                     </Route>
-                </Switch>
-                <Switch>
-                    <Route path = '/home'>
-                        <Home />
-                    </Route>
+
+
+                    <Route path = '/home' component={Home} />
                 </Switch>
             </div>
         );
