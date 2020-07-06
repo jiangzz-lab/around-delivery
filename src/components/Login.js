@@ -35,12 +35,20 @@ class LoginForm extends Component {
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login">
                 <Form.Item label="Username">
                     {
-                        getFieldDecorator('Username', {})(<Input />)
+                        getFieldDecorator('Username', {
+                            rules: [
+                                { required: true, message: 'Please input your username!'}
+                            ]
+                        })(<Input />)
                     }
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
                     {
-                        getFieldDecorator('Password', {})(<Input />)
+                        getFieldDecorator('Password', {
+                            rules: [
+                                { required: true, message: 'Please input your password!'}
+                            ]
+                        })(<Input />)
                     }
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>

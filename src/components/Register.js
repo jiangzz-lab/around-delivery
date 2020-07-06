@@ -35,15 +35,23 @@ class RegistrationForm extends Component {
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
                 <Form.Item label="Username">
                     {
-                        getFieldDecorator('Username', {})(<Input />)
+                        getFieldDecorator('Username', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'Please input your username'
+                                }
+                            ]
+                        })(<Input />)
                     }
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
                     {
                         getFieldDecorator('Password', {
-                            rule: [
+                            rules: [
                                 {
-                                    validator: this.validateToNextPassword,
+                                    required: true,
+                                    message: 'Please input your password!'
                                 }
                             ]
                         })(<Input />)
@@ -55,7 +63,7 @@ class RegistrationForm extends Component {
                             rules: [
                                 {
                                     required: true,
-                                    message: 'Please verify your Password'
+                                    message: 'Please verify your password'
                                 }
                             ]
                         })(<Input />)

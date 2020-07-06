@@ -4,7 +4,6 @@ import Payment from "./Payment";
 
 class CheckOut extends Component {
     render() {
-        
         return (
             <div>
                 <Descriptions title="Receiver Info">
