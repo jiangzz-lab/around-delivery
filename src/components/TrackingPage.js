@@ -7,8 +7,10 @@ const statusString = ['confirmed', 'picked up', 'in transit', 'delivered'];
 
 class TrackingPage extends Component {
     render() {
-        const current = this.props.orderInfo.status;
-        console.log(this.props.orderInfo);
+
+        const current = 0;
+        // const current = this.props.orderInfo.status;
+        // console.log(this.props.orderInfo);
         let statusArray = ['wait', 'wait', 'wait', 'wait'];
         for (let i = 0; i < statusArray.length; i++) {
             if (i < current) {
@@ -20,9 +22,14 @@ class TrackingPage extends Component {
             }
         }
 
+        console.log('props of TrackingPage -->', this.props);
+        console.log('match of TrackingPage -->', this.props.match);
+
+        const { match } = this.props;
+
         return (
             <div className="tracking-page">
-                <p className="tracking-status"> Your order {this.props.orderInfo.number} is {statusString[current]}! </p>
+                <p className="tracking-status"> Your order {match.params.number} is {statusString[current]}! </p>
                 <div className="tracking-bar">
                     <Steps>
                         <Step status={statusArray[0]} title="Order Confirmed" icon={<Icon type="solution" />} />
@@ -31,7 +38,7 @@ class TrackingPage extends Component {
                         <Step status={statusArray[3]} title="Delivered" icon={<Icon type="smile-o" />} />
                     </Steps>
                 </div>
-                <p className="delivery-time"> Deliver in {this.props.orderInfo.deliveryTime} hours </p>
+                <p className="delivery-time"> Deliver in 2 hours </p>
             </div>
         );
     }
