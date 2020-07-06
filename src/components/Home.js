@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 
 import Order from "./Order";
 
-import TrackingPage from "./TrackingPage";
 import Tracking from './Tracking';
 
-import { Button, Icon, Modal, message } from "antd";
+import { Button, Icon, message } from "antd";
 import { Link, Route } from "react-router-dom";
 
 class Home extends Component {
@@ -24,38 +23,6 @@ class Home extends Component {
         this.setState({
             orders: newOrderList,
         })
-    }
-
-    renderBody = () => {
-        const orderList = this.state.orders;
-        const { orderToTrack } = this.state;
-        switch(this.state.display) {
-            case "null" :
-                return null;
-            case "tracking":
-                if (orderList.length === 0) { return <p className='tracking-status'>You have no order to track!</p>; }
-                // console.log('when render tracking -->', this.state.orders);
-                if (orderToTrack === undefined) { return <p className='tracking-status'> You don't have this order! </p>; }
-                return <TrackingPage
-                        orderInfo={this.state.orders[this.state.orderToTrack]}
-                        />;
-            case "order":
-                const length = orderList.length;
-                return length === 0 ? <Order getOrderInfo={this.getOrderInfo} newOrder={undefined}/>
-                   : <Order getOrderInfo={this.getOrderInfo} newOrder={orderList[length - 1]} />;
-        }
-    }
-
-    renderTracking = () => {
-        // const orderList = this.state.orders;
-        // const { orderToTrack } = this.state;
-        // if (orderList.length === 0) { return <p className='tracking-status'>You have no order to track!</p>; }
-        // console.log('when render tracking -->', this.state.orders);
-        // if (orderToTrack === undefined) { return <p className='tracking-status'> You don't have this order! </p>; }
-        return <Tracking
-            orderInfo={this.state.orders}
-            handleSearch={this.handleSearch}
-        />;
     }
 
     renderOrder = () => {
@@ -90,10 +57,6 @@ class Home extends Component {
             display: 'tracking',
         });
     };
-
-    handleClose = () => {
-        console.log('when close the search bar -->', this.state.orders);
-    }
 
     render() {
         console.log(this.props);
