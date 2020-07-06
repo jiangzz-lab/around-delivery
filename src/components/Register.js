@@ -12,17 +12,6 @@ class RegistrationForm extends Component {
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     };
 
-    handleSubmit = e => {
-        e.preventDefault();
-        // console.log(this.props.form);
-        // console.log(this.props.form.getFieldsValue());
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    };
-
     render() {
         const { getFieldDecorator } = this.props.form;
 
@@ -123,6 +112,34 @@ class RegistrationForm extends Component {
         } else {
             callback();
         }
+    };
+
+    handleSubmit = e => {
+        e.preventDefault();
+        // console.log(this.props.form);
+        // console.log(this.props.form.getFieldsValue());
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                // fetch(`${API_ROOT}/login`, {
+                //     method: 'POST',
+                //     body: JSON.stringify({
+                //         username: values.username,
+                //         password: values.password,
+                //     }),
+                // })
+                //     .then((response) => {
+                //         if (response.ok) {
+                //             return response.text();
+                //         }
+                //         throw new Error(response.stateText);
+                //     })
+                //     .then((data) => {
+                //         console.log(data);
+                //         message.success('Register succeed!');
+                //     })
+            }
+        });
     };
 }
 
