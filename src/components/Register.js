@@ -122,7 +122,7 @@ class RegistrationForm extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                // fetch(`${API_ROOT}/login`, {
+                // fetch(`${API_ROOT}/signup`, {
                 //     method: 'POST',
                 //     body: JSON.stringify({
                 //         username: values.username,
@@ -137,6 +137,7 @@ class RegistrationForm extends Component {
                 //     })
                 //     .then((data) => {
                 //         console.log(data);
+                //         this.props.history.push('/login');
                 //         message.success('Register succeed!');
                 //     })
             }

@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-
 import Order from "./Order";
-
 import Tracking from './Tracking';
-
 import { Button, Icon } from "antd";
 import { Link, Route } from "react-router-dom";
 

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-
 import TopBar from "./TopBar";
 import Main from "./Main";
-//import payment_img from "../assets/images/paymentBG.jpg"
+//import {TOKEN_KEY} from '../constants';
 
 class App extends Component {
     // state = {
