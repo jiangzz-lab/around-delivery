@@ -8,28 +8,18 @@ import { Button, Icon } from "antd";
 import { Link, Route } from "react-router-dom";
 
 class Home extends Component {
-    constructor(props) {
+    /* constructor(props) {
         super(props);
         this.state = {
             orders: [],
             orderToTrack: 0,
         }
-    }
-
-    getOrderInfo = (newOrder) => {
-        let currentOrderList = this.state.orders.slice();
-        const newOrderList = currentOrderList.concat(newOrder);
-       // console.log('new orderList -->', newOrderList);
-        this.setState({
-            orders: newOrderList,
-        })
-    }
+    }*/
 
     renderOrder = () => {
-        const orderList = this.state.orders;
-        const length = orderList.length;
-        return length === 0 ? <Order getOrderInfo={this.getOrderInfo} newOrder={undefined}/>
-            : <Order getOrderInfo={this.getOrderInfo} newOrder={orderList[length - 1]} />;
+       // const orderList = this.state.orders;
+       // const length = orderList.length;
+        return  <Order />;
     }
 
     render() {

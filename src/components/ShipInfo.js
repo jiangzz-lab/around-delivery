@@ -7,12 +7,12 @@ class ShipInfoForm extends Component {
     value: 1
   };
 
-  onRadioChange = e => {
+  /* onRadioChange = e => {
     console.log("radio checked", e.target.value);
     this.setState({
       value: e.target.value
     });
-  };
+  }; */
 
    render() {
        const { getFieldDecorator } = this.props.form;
@@ -289,9 +289,9 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
-           <Row>
+           {/* <Row>
              <Col style={{ height: '50px' }} span={5} push={3}>
-               <Form.Item
+                <Form.Item
                    name="RobotOrDrone"
                    rules={[
                      {
@@ -300,7 +300,7 @@ class ShipInfoForm extends Component {
                      }
                    ]}
                >
-                 <Radio.Group
+                  <Radio.Group
                      onChange={this.onRadioChange}
                      value={this.state.value}
                  >
@@ -309,7 +309,7 @@ class ShipInfoForm extends Component {
                  </Radio.Group>
                </Form.Item>
              </Col>
-           </Row>
+           </Row>*/}
          </Form>
      );
    }

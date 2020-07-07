@@ -6,8 +6,10 @@ const { Step } = Steps;
 const statusString = ['confirmed', 'picked up', 'in transit', 'delivered'];
 
 class TrackingPage extends Component {
-    render() {
 
+
+
+    render() {
         const current = 0;
         // const current = this.props.orderInfo.status;
         // console.log(this.props.orderInfo);

@@ -40,15 +40,20 @@ class Order extends Component {
     handleShipInfo = () => {
         this.shipInfo.current.validateFieldsAndScroll((err, values) => {
             if (!err) {
+                // values contains all data from shipInfo form
                 console.log('Received values of form: ', values);
                 const { getOrderInfo } = this.props;
+
+                // add several properties which should get from backend in the future
                 const newOrderInfo = Object.assign(values, {
                     number: Math.floor(Math.random() * 1000),
                     status: 0,
                     deliveryTime: 2,
                 });
+
+                // print out complete order information
                 console.log('new order Info -->', newOrderInfo);
-                getOrderInfo(newOrderInfo);
+                // getOrderInfo(newOrderInfo);
                 const current = this.state.current + 1;
                 this.setState({current});
             } else {
