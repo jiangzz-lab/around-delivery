@@ -124,171 +124,173 @@ class ShipInfoForm extends Component {
 
            </Row>
 
-           <h3>Receiver Information</h3>
-           <Row gutter={10}>
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name="receiver-last-name"
-               >
-                 {getFieldDecorator(
-                     'receiver-last-name', {
-                       rules : [
-                         {
-                           required: true,
-                           message: 'Please input receiver last name!',
-                         },
-                       ],
-                       initialValue: newOrder === undefined ? undefined : newOrder['receiver-last-name'],
-                     }
-                 )(<Input placeholder="Last Name" />)}
-               </Form.Item>
-             </Col>
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name="receiver-first-name"
-               >
-                 {getFieldDecorator('receiver-first-name', {
-                   rules: [
-                     {
-                       required: true,
-                       message: 'Please input receiver first name!',
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-first-name'],
-                 })(<Input placeholder="First Name" />)}
-               </Form.Item>
-             </Col>
-           </Row>
-           <Row gutter={10}>
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name='receiver-phone-number'
-               >
-                 {getFieldDecorator('receiver-phone-number', {
-                       rules: [
-                         {
-                           required: true,
-                           message: "Please enter receiver phone number!",
-                         }
-                       ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-phone-number'],
-                     }
-                 )(<Input placeholder="Phone Number" />)}
-               </Form.Item>
-             </Col>
-             <Col style={{ height: '50px' }} span={9} push={3}>
-               <Form.Item
-                   name="receiver-email"
-               >
-                 {getFieldDecorator('receiver-email', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter receiver email!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-email'],
-                 }) (<Input placeholder="Email Address" />)}
-               </Form.Item>
-             </Col>
-           </Row>
-           <Row gutter={10}>
-             <Col style={{ height: '50px' }} span={12} push={3}>
-               <Form.Item
-                   name="receiver-address-1"
-               >
-                 {getFieldDecorator('receiver-address-1', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter destination!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['receiver-address'],
-                 }) (<Input placeholder="Street Address" />)}
-               </Form.Item>
-             </Col>
-               <Col style={{ height: '50px' }} span={6} push={3}>
-                   <Form.Item
-                       name="receiver-zip-code"
-                   >
-                       {getFieldDecorator('receiver-zip-code', {
-                           rules: [
-                               {
-                                   required: true,
-                                   message: "Please enter receiver zip code!",
-                               }
-                           ],
-                           initialValue: newOrder === undefined ? undefined : newOrder['receiver-zip-code'],
-                       }) (<Input placeholder="Zip code" />)}
-                   </Form.Item>
-               </Col>
-           </Row>
+           {/*<h3>Receiver Information</h3>*/}
+           {/*<Row gutter={10}>*/}
+           {/*  <Col style={{ height: '50px' }} span={9} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="receiver-last-name"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator(*/}
+           {/*          'receiver-last-name', {*/}
+           {/*            rules : [*/}
+           {/*              {*/}
+           {/*                required: true,*/}
+           {/*                message: 'Please input receiver last name!',*/}
+           {/*              },*/}
+           {/*            ],*/}
+           {/*            initialValue: newOrder === undefined ? undefined : newOrder['receiver-last-name'],*/}
+           {/*          }*/}
+           {/*      )(<Input placeholder="Last Name" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*  <Col style={{ height: '50px' }} span={9} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="receiver-first-name"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('receiver-first-name', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: 'Please input receiver first name!',*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['receiver-first-name'],*/}
+           {/*      })(<Input placeholder="First Name" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*</Row>*/}
+           {/*<Row gutter={10}>*/}
+           {/*  <Col style={{ height: '50px' }} span={9} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name='receiver-phone-number'*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('receiver-phone-number', {*/}
+           {/*            rules: [*/}
+           {/*              {*/}
+           {/*                required: true,*/}
+           {/*                message: "Please enter receiver phone number!",*/}
+           {/*              }*/}
+           {/*            ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['receiver-phone-number'],*/}
+           {/*          }*/}
+           {/*      )(<Input placeholder="Phone Number" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*  <Col style={{ height: '50px' }} span={9} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="receiver-email"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('receiver-email', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter receiver email!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['receiver-email'],*/}
+           {/*      }) (<Input placeholder="Email Address" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*</Row>*/}
+           {/*<Row gutter={10}>*/}
+           {/*  <Col style={{ height: '50px' }} span={12} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="receiver-address-1"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('receiver-address-1', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter destination!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['receiver-address'],*/}
+           {/*      }) (<Input placeholder="Street Address" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*    <Col style={{ height: '50px' }} span={6} push={3}>*/}
+           {/*        <Form.Item*/}
+           {/*            name="receiver-zip-code"*/}
+           {/*        >*/}
+           {/*            {getFieldDecorator('receiver-zip-code', {*/}
+           {/*                rules: [*/}
+           {/*                    {*/}
+           {/*                        required: true,*/}
+           {/*                        message: "Please enter receiver zip code!",*/}
+           {/*                    }*/}
+           {/*                ],*/}
+           {/*                initialValue: newOrder === undefined ? undefined : newOrder['receiver-zip-code'],*/}
+           {/*            }) (<Input placeholder="Zip code" />)}*/}
+           {/*        </Form.Item>*/}
+           {/*    </Col>*/}
+           {/*</Row>*/}
 
-           <h3>Package Information</h3>
-           <Row gutter={10}>
-             <Col style={{ height: '50px' }} span={4} push={3}>
-               <Form.Item
-                   name="length"
-               >
-                 {getFieldDecorator('package-length', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter package length in cm!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['package-length'],
-                 }) (<Input placeholder="Length(cm)" />)}
-               </Form.Item>
-             </Col>
-             <Col style={{ height: '50px' }} span={4} push={3}>
-               <Form.Item
-                   name="width"
-               >
-                 {getFieldDecorator('package-width', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter package width in cm!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['package-width'],
-                 }) (<Input placeholder="Width(cm)" />)}
-               </Form.Item>
-             </Col>
-             <Col style={{ height: '50px' }} span={5} push={3}>
-               <Form.Item
-                   name="height"
-               >
-                 {getFieldDecorator('package-height', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter package height in cm!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['package-height'],
-                 }) (<Input placeholder="Height(cm)" />)}
-               </Form.Item>
-             </Col>
+           {/*<h3>Package Information</h3>*/}
+           {/*<Row gutter={10}>*/}
+           {/*  <Col style={{ height: '50px' }} span={4} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="length"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('package-length', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter package length in cm!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['package-length'],*/}
+           {/*      }) (<Input placeholder="Length(cm)" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*  <Col style={{ height: '50px' }} span={4} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="width"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('package-width', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter package width in cm!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['package-width'],*/}
+           {/*      }) (<Input placeholder="Width(cm)" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*  <Col style={{ height: '50px' }} span={5} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="height"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('package-height', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter package height in cm!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['package-height'],*/}
+           {/*      }) (<Input placeholder="Height(cm)" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
 
-             <Col style={{ height: '50px' }} span={5} push={3}>
-               <Form.Item
-                   name="weight"
-               >
-                 {getFieldDecorator('package-weight', {
-                   rules: [
-                     {
-                       required: true,
-                       message: "Please enter package weight in kg!",
-                     }
-                   ],
-                   initialValue: newOrder === undefined ? undefined : newOrder['package-weight'],
-                 }) (<Input placeholder="Weight(kg)" />)}
-               </Form.Item>
-             </Col>
-           </Row>
+           {/*  <Col style={{ height: '50px' }} span={5} push={3}>*/}
+           {/*    <Form.Item*/}
+           {/*        name="weight"*/}
+           {/*    >*/}
+           {/*      {getFieldDecorator('package-weight', {*/}
+           {/*        rules: [*/}
+           {/*          {*/}
+           {/*            required: true,*/}
+           {/*            message: "Please enter package weight in kg!",*/}
+           {/*          }*/}
+           {/*        ],*/}
+           {/*        initialValue: newOrder === undefined ? undefined : newOrder['package-weight'],*/}
+           {/*      }) (<Input placeholder="Weight(kg)" />)}*/}
+           {/*    </Form.Item>*/}
+           {/*  </Col>*/}
+           {/*</Row>*/}
+
+
            {/* <Row>
              <Col style={{ height: '50px' }} span={5} push={3}>
                 <Form.Item
