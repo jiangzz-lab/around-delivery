@@ -195,9 +195,9 @@ class ShipInfoForm extends Component {
            <Row gutter={10}>
              <Col style={{ height: '50px' }} span={12} push={3}>
                <Form.Item
-                   name="receiver-address-1"
+                   name="receiver-address"
                >
-                 {getFieldDecorator('receiver-address-1', {
+                 {getFieldDecorator('receiver-address', {
                    rules: [
                      {
                        required: true,
