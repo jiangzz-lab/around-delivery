@@ -44,15 +44,14 @@ class Order extends Component {
     handleShipInfo = () => {
         this.shipInfo.current.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                // values contains all data from shipInfo form
-                console.log('Received values of form: ', values);
-                const body = JSON.stringify(values);
-                console.log(body);
                 // get recommendation options form backend
                 axios.post(`http://localhost:5000/recommendation`, {
-                    "oneAddr": "Google",
-                    "twoAddr": "Facebook",
-                })
+                    "oneAddr": values['sender-address'],
+                    "twoAddr": values['receiver-address'],
+                    "height" : values['package-height'],
+                    "length" : values['package-length'],
+                    "width" : values['package-width'],
+                    })
                     .then((response) => {
                         const optionResponse = response.data;
                         // It is very awkward to put two pieces of data into one object;
@@ -69,14 +68,12 @@ class Order extends Component {
                         }
                         const options = [];
                         const recommendations = options.concat(option1).concat(option2);
-                        console.log(recommendations);
                         // Now add the recommendations to orderInfo
                         const updatedOrderInfo = Object.assign(values, {
                             number: Math.floor(Math.random() * 1000),
                             status: 0,
                             recommendations: recommendations,
                         })
-                        console.log(updatedOrderInfo);
                         // and update the orderInfo data in this.state
                         this.setState({
                             orderInfo: updatedOrderInfo,
@@ -85,14 +82,6 @@ class Order extends Component {
                     .catch((error) => {
                         console.log(error)
                     })
-
-                const newOrderInfo = Object.assign(values, {
-                    // number should come from backend after payment success in the future
-                    // status should be set to 0, namely 'confirmed' at this point
-                });
-
-                // print out complete order information
-                console.log('new order Info -->', newOrderInfo);
 
                 const current = this.state.current + 1;
                 this.setState({current});
