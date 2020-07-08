@@ -18,11 +18,8 @@ class RecommendFrom extends Component {
             lineHeight: "30px"
         };
 
-        const deliveryOptions = [
-            { style: radioStyle, content: "Option 1: Fee: $  , Carrier: drone/robot ", value: 1 },
-            { style: radioStyle, content: "Option 2: Fee: $  , Carrier: drone/robot ", value: 2 },
-            { style: radioStyle, content: "Option 3: Fee: $  , Carrier: drone/robot ", value: 3 }
-        ];
+        const deliveryOptions = this.props.options;
+        console.log(deliveryOptions);
 
         return (
             <Form
@@ -47,9 +44,9 @@ class RecommendFrom extends Component {
                                     onChange={onChange}
                                     // defaultValue="a"
                                 >
-                                    <Radio.Button value="a">1hr</Radio.Button>
-                                    <Radio.Button value="b">5hrs</Radio.Button>
-                                    <Radio.Button value="c">8hrs</Radio.Button>
+                                    <Radio.Button value={0}>1hr</Radio.Button>
+                                    <Radio.Button value={1}>5hrs</Radio.Button>
+                                    <Radio.Button value={2}>8hrs</Radio.Button>
                                 </Radio.Group>
                             )}
                         </Form.Item>
@@ -72,9 +69,9 @@ class RecommendFrom extends Component {
                                     onChange={onChange}
                                     // defaultValue={1}
                                 >
-                                    {deliveryOptions.map(option => (
-                                        <Radio style={option.style} value={option.value} key = {option.value}>
-                                            {option.content}
+                                    {deliveryOptions.map((option, index) => (
+                                        <Radio style={radioStyle} value={index} key = {index}>
+                                            Option {index + 1}: Time: {option['time']} Fee: ${option['price']}  , Carrier: {option['carrier']}
                                         </Radio>
                                     ))}
                                 </Radio.Group>

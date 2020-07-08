@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Spin } from 'antd';
 import axios from 'axios';
 
 
@@ -37,6 +37,7 @@ class Order extends Component {
         this.state = {
             current: 0,
             orderInfo: {},
+            isLoadingOptions: false,
         };
         this.shipInfo = React.createRef();
         this.recommendInfo = React.createRef();
@@ -46,6 +47,9 @@ class Order extends Component {
         this.shipInfo.current.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 // get recommendation options form backend
+                this.setState({
+                    isLoadingOptions : true,
+                });
                 axios.post(`http://localhost:5000/recommendation`, {
                     "oneAddr": values['sender-address'],
                     "twoAddr": values['receiver-address'],
@@ -78,12 +82,12 @@ class Order extends Component {
                         // and update the orderInfo data in this.state
                         this.setState({
                             orderInfo: updatedOrderInfo,
+                            isLoadingOptions: false,
                         });
                     })
                     .catch((error) => {
                         console.log(error)
                     })
-
                 const current = this.state.current + 1;
                 this.setState({current});
             } else {
@@ -96,8 +100,13 @@ class Order extends Component {
         this.recommendInfo.current.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of recommend form: ', values);
+                const { orderInfo } = this.state;
                 const current = this.state.current + 1;
-                this.setState({current});
+                const updatedOrderInfo = Object.assign(orderInfo, values);
+                this.setState({
+                    current: current,
+                    orderInfo : updatedOrderInfo,
+                });
             } else {
                 message.error('Please enter necessary information!');
             }
@@ -121,19 +130,45 @@ class Order extends Component {
         this.setState({ current });
     }
 
+    renderShipInfo = () => {
+            return <ShipInfo
+                ref={this.shipInfo}
+            />;
+    }
+
+    renderRecommend = () => {
+        if (this.state.isLoadingOptions) {
+            return <Spin tip="We are getting the best solutions for you ..."/>
+        } else {
+            console.log(this.state.orderInfo.recommendations)
+            return <Recommend
+                ref={this.recommendInfo}
+                options={this.state.orderInfo.recommendations}
+            />;
+        }
+    }
+
+    renderCheckout = () => {
+        return <CheckOut orderInfo={this.state.orderInfo}/>;
+    }
+
+    renderConfirm = () => {
+        return <Confirm />;
+    }
+
+    renderStepContent = (current) => {
+        console.log('step -->', current);
+        console.log('this.state.orderInfo', this.state.orderInfo);
+        const stepContent = [this.renderShipInfo, this.renderRecommend, this.renderCheckout, this.renderConfirm];
+        return stepContent[current]();
+    }
+
     render() {
         /* current notes the current step of the order process*/
         console.log('updatedOrderInfo in this.state -->', this.state.orderInfo);
         const { current } = this.state;
         /* stepContent is an Array that saves corresponding component to render
          as step content for each step*/
-        const stepContent = [<ShipInfo
-            ref={this.shipInfo}
-            newOrder={this.props.newOrder}
-        />, <Recommend
-            ref={this.recommendInfo}
-        />, <CheckOut />, this.props.newOrder === undefined ?<Confirm /> : <Confirm orderNumber={this.props.newOrder.number}/>];
-
         return (
             <div>
                 <div className="order-steps">
@@ -145,7 +180,7 @@ class Order extends Component {
                 {/* This is the place to render content for the current step;
                     it could be ShipInfo, Recommend etc according to the value of current*/}
                 <div className="steps-content">
-                    {stepContent[current]}
+                    {this.renderStepContent(current)}
                 </div>
 
                 <div className="steps-action">
