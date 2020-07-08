@@ -30,15 +30,15 @@ class RecommendFrom extends Component {
             >
                 <Row gutter={10}>
                     <Col span={30}>
-                        <Form.Item label="Delivery time" name="Delivery time"
-                            rules={[
-                            {
-                                required: true,
-                                message: "Delivery time"
-                            }
-                            ]}
-                        >
-                            {getFieldDecorator('delivery-time')(
+                        <Form.Item label="Delivery time" name="Delivery time">
+                            {getFieldDecorator('delivery-time', {
+                                rules : [
+                                            {
+                                                required: true,
+                                                message: "Delivery time"
+                                            }
+                                        ]
+                            })(
                                 <Radio.Group
                                     name="Delivery time"
                                     onChange={onChange}
@@ -57,21 +57,22 @@ class RecommendFrom extends Component {
                         <Form.Item
                             label="Delivery options"
                             name="Delivery options"
-                            rules={[
-                            {
-                                required: true,
-                                message: "Delivery options"
-                            }
-                            ]}
                         >
-                            {getFieldDecorator('delivery-option')(
+                            {getFieldDecorator('delivery-option',{
+                                rules : [
+                                    {
+                                        required: true,
+                                        message: "Delivery time"
+                                    }
+                                ]
+                            })(
                                 <Radio.Group
                                     onChange={onChange}
                                     // defaultValue={1}
                                 >
                                     {deliveryOptions.map((option, index) => (
                                         <Radio style={radioStyle} value={index} key = {index}>
-                                            Option {index + 1}: Time: {option['time']} Fee: ${option['price']}  , Carrier: {option['carrier']}
+                                            Option {index + 1}: Time: {option['time']}hrs, Fee: ${option['price']}, Carrier: {option['carrier']}
                                         </Radio>
                                     ))}
                                 </Radio.Group>

@@ -4,28 +4,29 @@ import Payment from "./Payment";
 
 class CheckOut extends Component {
     render() {
+        const { orderInfo } = this.props;
         return (
             <div>
                 <Descriptions title="Receiver Info">
-                    <Descriptions.Item label="Name">Facebook</Descriptions.Item>
-                    <Descriptions.Item label="Telephone">xxxxxxxxxx</Descriptions.Item>
-                    <Descriptions.Item label="Email">xxxx@gmail.com</Descriptions.Item>
+                    <Descriptions.Item label="Name">{orderInfo['receiver-first-name'] + orderInfo['receiver-last-name']}</Descriptions.Item>
+                    <Descriptions.Item label="Telephone">{orderInfo['receiver-phone-number']}</Descriptions.Item>
+                    <Descriptions.Item label="Email">{orderInfo['receiver-email']}</Descriptions.Item>
                     <Descriptions.Item label="Address">
-                        1 Hacker Way, Menlo Park, CA 94025
+                        {orderInfo['receiver-address']}
                     </Descriptions.Item>
                 </Descriptions>
                 <Descriptions title="Sender Info">
-                    <Descriptions.Item label="Name">Google</Descriptions.Item>
-                    <Descriptions.Item label="Telephone">xxxxxxxxxx</Descriptions.Item>
-                    <Descriptions.Item label="Email">xxxx@gmail.com</Descriptions.Item>
+                    <Descriptions.Item label="Name">{orderInfo['sender-first-name'] + orderInfo['sender-last-name']}</Descriptions.Item>
+                    <Descriptions.Item label="Telephone">{orderInfo['sender-phone-number']}</Descriptions.Item>
+                    <Descriptions.Item label="Email">{orderInfo['sender-email']}</Descriptions.Item>
                     <Descriptions.Item label="Address">
-                        1600 Amphitheatre Pkwy, Mountain View, CA 94043
+                        {orderInfo['sender-address']}
                     </Descriptions.Item>
                 </Descriptions>
                 <Descriptions title="Package Info">
-                    <Descriptions.Item label="Delivery Time">1h</Descriptions.Item>
-                    <Descriptions.Item label="Delivery Fee">$20</Descriptions.Item>
-                    <Descriptions.Item label="Carrier"> drone </Descriptions.Item>
+                    <Descriptions.Item label="Delivery Time">{orderInfo['recommendations'][orderInfo['delivery-option']]['time']}hrs</Descriptions.Item>
+                    <Descriptions.Item label="Delivery Fee">${orderInfo['recommendations'][orderInfo['delivery-option']]['price']}</Descriptions.Item>
+                    <Descriptions.Item label="Carrier">{orderInfo['recommendations'][orderInfo['delivery-option']]['carrier']}</Descriptions.Item>
                 </Descriptions>
                 <div>
                     <Payment />
