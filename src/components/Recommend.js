@@ -6,7 +6,7 @@ class RecommendFrom extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log(this.props.form.getFieldsValue())
+        //console.log(this.props.form.getFieldsValue())
 
         const onChange = e => {
             console.log(`radio checked:${e.target.value}`);
