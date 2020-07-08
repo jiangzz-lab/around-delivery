@@ -39,6 +39,7 @@ class Order extends Component {
             orderInfo: {},
         };
         this.shipInfo = React.createRef();
+        this.recommendInfo = React.createRef();
     }
 
     handleShipInfo = () => {
@@ -91,10 +92,24 @@ class Order extends Component {
         });
     }
 
+    handleRecommendInfo = () => {
+        this.recommendInfo.current.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of recommend form: ', values);
+                const current = this.state.current + 1;
+                this.setState({current});
+            } else {
+                message.error('Please enter necessary information!');
+            }
+        });
+    }
+
     next() {
         console.log(this.state.current);
         if (this.state.current === 0) {
             this.handleShipInfo();
+        }  else if (this.state.current === 1) {
+            this.handleRecommendInfo();
         } else {
             const current = this.state.current + 1;
             this.setState({current});
@@ -115,7 +130,9 @@ class Order extends Component {
         const stepContent = [<ShipInfo
             ref={this.shipInfo}
             newOrder={this.props.newOrder}
-        />, <Recommend />, <CheckOut />, this.props.newOrder === undefined ?<Confirm /> : <Confirm orderNumber={this.props.newOrder.number}/>];
+        />, <Recommend
+            ref={this.recommendInfo}
+        />, <CheckOut />, this.props.newOrder === undefined ?<Confirm /> : <Confirm orderNumber={this.props.newOrder.number}/>];
 
         return (
             <div>

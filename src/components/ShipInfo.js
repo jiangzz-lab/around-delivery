@@ -289,6 +289,7 @@ class ShipInfoForm extends Component {
                </Form.Item>
              </Col>
            </Row>
+
            {/* <Row>
              <Col style={{ height: '50px' }} span={5} push={3}>
                 <Form.Item
