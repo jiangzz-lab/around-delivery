@@ -6,7 +6,6 @@ class RecommendFrom extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        console.log(this.props.form);
         console.log(this.props.form.getFieldsValue())
 
         const onChange = e => {
