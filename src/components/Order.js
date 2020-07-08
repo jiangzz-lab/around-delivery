@@ -64,7 +64,6 @@ class Order extends Component {
     }
 
     handleRecommendInfo = () => {
-        console.log(this.recommendInfo.current);
         this.recommendInfo.current.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of recommend form: ', values);
