@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "antd/dist/antd.css";
-import { Col, Row, Form, Radio } from "antd";
+import {Col, Row, Form, Radio, Descriptions} from "antd";
 
 class RecommendFrom extends Component {
 
@@ -25,28 +25,28 @@ class RecommendFrom extends Component {
             <Form
                 name="RecommendInfoForm"
                 initialvalues={{
-              remember: true
+                remember: true
             }}
             >
+                <Descriptions title="Delivery time"></Descriptions>
                 <Row gutter={10}>
                     <Col span={30}>
-                        <Form.Item label="Delivery time" name="Delivery time">
+                        <Form.Item >
                             {getFieldDecorator('delivery-time', {
                                 rules : [
                                             {
                                                 required: true,
-                                                message: "Delivery time"
+                                                message: "Please select one delivery time!"
                                             }
                                         ]
                             })(
                                 <Radio.Group
-                                    name="Delivery time"
                                     onChange={onChange}
                                     // defaultValue="a"
                                 >
                                     <Radio.Button value={0}>1hr</Radio.Button>
-                                    <Radio.Button value={1}>5hrs</Radio.Button>
-                                    <Radio.Button value={2}>8hrs</Radio.Button>
+                                    <Radio.Button value={1}>6hrs</Radio.Button>
+                                    <Radio.Button value={2}>12hrs</Radio.Button>
                                 </Radio.Group>
                             )}
                         </Form.Item>
@@ -54,15 +54,13 @@ class RecommendFrom extends Component {
                 </Row>
                 <Row gutter={10}>
                     <Col span={30}>
-                        <Form.Item
-                            label="Delivery options"
-                            name="Delivery options"
-                        >
+                        <Descriptions title="Delivery options"></Descriptions>
+                        <Form.Item >
                             {getFieldDecorator('delivery-option',{
                                 rules : [
                                     {
                                         required: true,
-                                        message: "Delivery time"
+                                        message: "Please select one delivery option!"
                                     }
                                 ]
                             })(
