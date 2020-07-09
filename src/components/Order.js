@@ -153,7 +153,7 @@ class Order extends Component {
     }
 
     renderConfirm = () => {
-        return <Confirm />;
+        return <Confirm orderInfo={this.state.orderInfo}/>;
     }
 
     renderStepContent = (current) => {
