@@ -9,6 +9,7 @@
 @import "styles/Login.css";
 @import "styles/Register.css";
 @import "styles/PhotoBooth.css";
+@import "styles/Tracking.css";
 
 body {
   margin: 0;

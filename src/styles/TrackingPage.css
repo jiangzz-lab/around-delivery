@@ -8,20 +8,20 @@
 }
 
 .tracking-status {
-    font-size: 30pt;
-    margin-top:10px;
-    margin-bottom: 20px;
+    font-size: 22pt;
+    margin-top:30px;
+    margin-bottom: 50px;
 }
 
 .tracking-bar {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     margin-left: auto;
     margin-right: 50px;
 }
 
 .delivery-time{
-    font-size: 30pt;
-    margin-top: 10px;
+    font-size: 22pt;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
