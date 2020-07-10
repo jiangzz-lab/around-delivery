@@ -1,113 +1,98 @@
-import React, {useState} from 'react';
-// import logo from './logo.svg';
-// import '../App.css';
-import { Button } from 'antd';
-import StripeCheckout from "react-stripe-checkout"
+import React, {createRef} from 'react';
+import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 
-function Payment() {
+class CheckoutForm extends React.Component {
 
-  const [product, setProduct] = useState({
-    name: "React from FB",
-    price: 20,
-    productBy:"facebook"
-  })
-
-  const makePayment = token =>{
-    const body = {
-      token,
-      product
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const {stripe, elements} = this.props;
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement),
+    });
+    if (error) {
+      console.log(error.message);
+    } else {
+      console.log(paymentMethod);
+      const orderData = {
+        items: [{ id: "photo-subscription" }],
+        currency: "usd",
+        paymentMethodId: paymentMethod['id'],
+      }
+      const { togglePaymentStatus, moveNext } = this.props;
+      togglePaymentStatus(true);
+      fetch("http://localhost:5000/pay", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(orderData)
+      }).then((response) => {
+        console.log(response);
+        togglePaymentStatus(false);
+        moveNext();
+      });
     }
-    const headers = {
-      "Content-Type": "application/json"
-    }
-    return fetch(`http://localhost:8282/payment`,{
-      method: "POST",
-      headers,
-      body: JSON.stringigy(body)
-    }).then(response => {
-      console.log ("RESPONS ", response)
-      const {status} = response
-      console.log("STATUS",status)
-    })
-      .catch(error => console.log(error))
+  };
+
+  render() {
+    const CARD_ELEMENT_OPTIONS = {
+      style: {
+        base: {
+          color: "#32325d",
+          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+          fontSmoothing: "antialiased",
+          fontSize: "16px",
+          "::placeholder": {
+            color: "#aab7c4",
+          },
+        },
+        invalid: {
+          color: "#fa755a",
+          iconColor: "#fa755a",
+        },
+      },
+    };
+
+    return (
+        <div>
+          <form className="card-form" onSubmit={this.handleSubmit}>
+            <CardElement className="card-element" options={CARD_ELEMENT_OPTIONS}/>
+          </form>
+        </div>
+    );
+  }
+}
+
+class Payment extends React.Component {
+  constructor(props) {
+    super(props);
+    this.formRef = createRef();
   }
 
+  handlePay = (event) => {
+    this.formRef.current.handleSubmit(event);
+  }
 
-  return (
-    <div className="Payment">
-      
-      {/* <header> */}
-        <StripeCheckout 
-          stripeKey = "pk_test_51GzS1qDEz20aCkSvlkqCYnGwQf9y7OB7zwU8PlFmk20ZIE52yjzntYGvTp5gPQXz5FUGPdD1utSTqggyO4CT961500a94PMsU5"
-          token = "makePayment" 
-          name  = "Buy Deliver Around"
-          amount = {product.price*100}
-          >
-          <Button className = "payment-button" type="primary"> Click to pay ${product.price} </Button>
-        </StripeCheckout>
-      {/* </header> */}
-    </div>
-  );
+  render(){
+    console.log('props of payment -->', this.props);
+    return(
+        <ElementsConsumer>
+          {({stripe, elements}) => {
+            console.log('stripe inside ElementConsumer -->', stripe);
+            console.log('elements inside ElementConsumer -->', elements);
+            return <CheckoutForm
+                stripe={stripe}
+                elements={elements}
+                ref={this.formRef}
+                togglePaymentStatus={this.props.togglePaymentStatus}
+                moveNext={this.props.moveNext}
+            />;
+          }
+          }
+        </ElementsConsumer>
+    );
+  }
 }
+
 export default Payment;
-
-// class Payment extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             productname: "React from FB",
-//             price: 20,
-//             productBy:"facebook"
-//         }
-//     }
-
-//     makePayment = token =>{
-//         const body = {
-//           token,
-//           productInfo = {this.state.product}
-//         }
-//         const headers = {
-//           "Content-Type": "application/json"
-//         }
-//         return fetch(`http://localhost:8282/payment`,{
-//           method: "POST",
-//           headers,
-//           body: JSON.stringigy(body)
-//         }).then(response => {
-//           console.log ("RESPONS ", response)
-//           const {status} = response
-//           console.log("STATUS",status)
-//         })
-//           .catch(error => console.log(error))
-//       }
-
-
-//     render() {
-//         return (
-//             <div className="App">
-//               <header className="App-header">
-//                 <img src={logo} className="App-logo" alt="logo" />
-        
-//                 <a
-//                   className="App-link"
-//                   href="https://reactjs.org"
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                 >
-//                   Learn React
-//                 </a>
-//                 <StripeCheckout 
-//                   stripeKey = "pk_test_51GzS1qDEz20aCkSvkHFcDZezPnwnWA31xk3PquMhR2hI4skg5zTnDIhJgQsVsQpFt7lrxpUB3tiFPQrdCliBKkMx008Hz3fjDw"
-//                   token = "makePayment" 
-//                   name  = "Buy Deliver Around"
-//                   amount = {product.price*100}
-//                   >
-//                   <button className = "btn-large pink" > Buy Deliver Around for ${product.price} </button>
-//                 </StripeCheckout>
-//               </header>
-//             </div>
-//           );
-//     }
-// }
-
-// export default Payment;

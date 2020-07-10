@@ -13,10 +13,24 @@
     background-position: center;
 }
 
-
-
 .payment-button {
     margin-right: 10px;
     margin-left: auto;
     margin-bottom: auto;
+}
+
+.card-form {
+    text-align: center;
+    margin: auto;
+    width: 400px;
+    height: 30px;
+    border: 1px solid dimgray;
+    border-radius: 2px;
+    padding-top: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.card-element {
+    margin: auto;
 }

@@ -28,9 +28,6 @@ class CheckOut extends Component {
                     <Descriptions.Item label="Delivery Fee">${orderInfo['recommendations'][orderInfo['delivery-option']]['price']}</Descriptions.Item>
                     <Descriptions.Item label="Carrier">{orderInfo['recommendations'][orderInfo['delivery-option']]['carrier']}</Descriptions.Item>
                 </Descriptions>
-                <div>
-                    <Payment />
-                </div>
             </div>
         );
     }
