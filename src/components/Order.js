@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import { Steps, Button, message, Spin } from 'antd';
 import axios from 'axios';
+import {Elements} from "@stripe/react-stripe-js";
+import {loadStripe} from '@stripe/stripe-js';
 
 
 import ShipInfo from "./ShipInfo";
 import Recommend from "./Recommend";
 import CheckOut from "./CheckOut";
+import Payment from "./Payment";
 import Confirm from "./Confirm";
 
 
@@ -26,6 +29,10 @@ const steps = [
         content: 'Review',
     },
     {
+        title: 'Payment',
+        content: 'Payment'
+    },
+    {
         title: 'Confirmation',
         content: 'Confirmation'
     }
@@ -38,9 +45,11 @@ class Order extends Component {
             current: 0,
             orderInfo: {},
             isLoadingOptions: false,
+            isProcessingPayment: false,
         };
         this.shipInfo = React.createRef();
         this.recommendInfo = React.createRef();
+        this.payRef = React.createRef();
     }
 
     handleShipInfo = () => {
@@ -113,13 +122,37 @@ class Order extends Component {
         });
     }
 
-    next() {
+    togglePaymentStatus = (status) => {
+        this.setState({
+            isProcessingPayment: status,
+        });
+    }
+
+    moveNext = () => {
+        this.setState((state) => ({
+            current: state.current + 1,
+        }))
+    }
+
+    handlePay = (event) => {
+        console.log('payment -->', this.state.isProcessingPayment);
+        this.payRef.current.handlePay(event);
+        // const current = this.state.current + 1;
+        // this.setState({
+        //    current: current,
+        // })
+    }
+
+    next = (event) => {
         console.log(this.state.current);
         if (this.state.current === 0) {
-            this.handleShipInfo();
+            this.handleShipInfo(event);
         }  else if (this.state.current === 1) {
-            this.handleRecommendInfo();
-        } else {
+            this.handleRecommendInfo(event);
+        } else if (this.state.current === 3) {
+            this.handlePay(event);
+        }
+        else {
             const current = this.state.current + 1;
             this.setState({current});
         }
@@ -152,6 +185,15 @@ class Order extends Component {
         return <CheckOut orderInfo={this.state.orderInfo}/>;
     }
 
+    renderPayment = () => {
+        const stripePromise = loadStripe("pk_test_51H347oGW9FfdIurDNI4Kl7mFH1Wj8i0ToP1cYb90pUsAujhUt4kl6G6nALtY4sv0Y0hyCFuuE3EV322uqyetXuo400GeHb9dUo");
+        return <Elements stripe={stripePromise}><Payment
+            ref={this.payRef}
+            togglePaymentStatus={this.togglePaymentStatus}
+            moveNext={this.moveNext}
+        /></Elements>;
+    }
+
     renderConfirm = () => {
         return <Confirm orderInfo={this.state.orderInfo}/>;
     }
@@ -159,7 +201,14 @@ class Order extends Component {
     renderStepContent = (current) => {
         console.log('step -->', current);
         console.log('this.state.orderInfo', this.state.orderInfo);
-        const stepContent = [this.renderShipInfo, this.renderRecommend, this.renderCheckout, this.renderConfirm];
+        const stepContent =
+            [
+                this.renderShipInfo,
+                this.renderRecommend,
+                this.renderCheckout,
+                this.renderPayment,
+                this.renderConfirm
+            ];
         return stepContent[current]();
     }
 
@@ -190,7 +239,7 @@ class Order extends Component {
                         </Button>
                     )}
                     {current < steps.length - 1 && (
-                        <Button className='next-button' type="primary" onClick={() => this.next()}>
+                        <Button className='next-button' type="primary" onClick={(event) => this.next(event)}>
                             Next
                         </Button>
                     )}

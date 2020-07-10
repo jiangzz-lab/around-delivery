@@ -10,6 +10,7 @@
 @import "styles/Register.css";
 @import "styles/PhotoBooth.css";
 @import "styles/Tracking.css";
+@import "styles/Payment.css";
 
 body {
   margin: 0;
