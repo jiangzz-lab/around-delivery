@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 // import { API_ROOT} from "../constants";
+import axios from 'axios';
 
 class LoginForm extends Component {
 
@@ -69,13 +70,10 @@ class LoginForm extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                // fetch(`${API_ROOT}/login`, {
-                //     method: 'POST',
-                //     body: JSON.stringify({
-                //         username: values.username,
-                //         password: values.password,
-                //     }),
-                // })
+                // axios.post(`http://localhost:5000/delivery/login`, {
+                //     "user_id": values['username'],
+                //     "password": values['password'],
+                //     })
                 //     .then((response) => {
                 //         if (response.ok) {
                 //             return response.text();
@@ -84,12 +82,12 @@ class LoginForm extends Component {
                 //     })
                 //     .then((data) => {
                 //         console.log(data);
-                //         this.props.handleLoginSucceed(data);
-                //         message.success('Login succeed!');
+                //         // this.props.handleLoginSucceed(data);
+                //         // message.success('Login succeed!');
                 //     })
                 //     .catch((err) => {
                 //         console.error(err);
-                //         message.error('Login failed.');
+                //         // message.error('Login failed.');
                 //     });
             }
         });
