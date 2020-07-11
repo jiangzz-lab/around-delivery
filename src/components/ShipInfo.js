@@ -23,6 +23,7 @@ class ShipInfoForm extends Component {
          >
            <h3>Sender Information</h3>
            <Row gutter={10}>
+             <Row gutter={10}>
              <Col style={{ height: '50px' }} span={6} push={3}>
                <Form.Item
                    name="sender-last-name"
@@ -89,7 +90,8 @@ class ShipInfoForm extends Component {
                    }) (<Input placeholder="Email Address" />)}
                </Form.Item>
              </Col>
-             <Row gutter={10}>
+
+
                <Col style={{ height: '50px' }} span={9} push={3}>
                  <Form.Item
                      name="Street_Address"
@@ -121,8 +123,6 @@ class ShipInfoForm extends Component {
                  </Form.Item>
                </Col>
            </Row>
-
-
            </Row>
 
            <h3>Receiver Information</h3>
