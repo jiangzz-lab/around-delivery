@@ -43,6 +43,7 @@ class RegistrationForm extends Component {
 
         return (
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
+                <h1 className="title">   Register your account</h1>
                 <Form.Item label="Username">
                     {
                         getFieldDecorator('Username', {
@@ -171,28 +172,29 @@ class RegistrationForm extends Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                axios.post(`http://localhost:5000/login`, {
-                        // username: values.username,
-                        // password: values.password,
-                    "user_id": values['username'],
-                    "password": values['password'],
-                    "last_name":values['last_name'],
-                    "first_name":values["first_name"],
-                    "email_address":values["email_address"],
-                    "phone_number":values["phone_number"]
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            return response.text();
-                        }
-                        //throw new Error(response.stateText);
-                    })
-                    .then((data) => {
-                        console.log(data);
-                        console.log(this.props.history);
-                        // this.props.history.push('/login');
-                        // message.success('Register succeed!');
-                    })
+                // axios.post(`http://localhost:5000/login`, {
+                //         // username: values.username,
+                //         // password: values.password,
+                //     "user_id": values['username'],
+                //     "password": values['password'],
+                //     "last_name":values['last_name'],
+                //     "first_name":values["first_name"],
+                //     "email_address":values["email_address"],
+                //     "phone_number":values["phone_number"]
+                // })
+                //     .then((response) => {
+                //         if (response.ok) {
+                //             return response.text();
+                //         }
+                //         //throw new Error(response.stateText);
+                //     })
+                //     .then((data) => {
+                //         console.log(data);
+                //         console.log(this.props.history);
+                //         // this.props.history.push('/login');
+                //         // message.success('Register succeed!');
+                //     })
+
                 // fetch(`${API_ROOT}/signup`, {
                 //     method: 'POST',
                 //     body: JSON.stringify({
