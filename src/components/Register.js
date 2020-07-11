@@ -46,7 +46,7 @@ class RegistrationForm extends Component {
                 <h1 className="title">   Register your account</h1>
                 <Form.Item label="Username">
                     {
-                        getFieldDecorator('Username', {
+                        getFieldDecorator('username', {
                             rules: [
                                 {
                                     required: true,
@@ -171,29 +171,36 @@ class RegistrationForm extends Component {
         // console.log(this.props.form.getFieldsValue());
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                // axios.post(`http://localhost:5000/login`, {
-                //         // username: values.username,
-                //         // password: values.password,
-                //     "user_id": values['username'],
-                //     "password": values['password'],
-                //     "last_name":values['last_name'],
-                //     "first_name":values["first_name"],
-                //     "email_address":values["email_address"],
-                //     "phone_number":values["phone_number"]
-                // })
-                //     .then((response) => {
-                //         if (response.ok) {
-                //             return response.text();
-                //         }
-                //         //throw new Error(response.stateText);
-                //     })
-                //     .then((data) => {
-                //         console.log(data);
-                //         console.log(this.props.history);
-                //         // this.props.history.push('/login');
-                //         // message.success('Register succeed!');
-                //     })
+                // console.log('Received values of form: ', values);
+                axios.post(`http://localhost:5000/register`, {
+                    // username: values.username,
+                    // password: values.password,
+                    "user_id": values['username'],
+                    "password": values['password'],
+                    "last_name":values['last_name'],
+                    "first_name":values["first_name"],
+                    "email_address":values["email_address"],
+                    "phone_number":values["phone_number"]
+                })
+                    .then((response) => {
+                        console.log(response);
+                        if (response.statusText === "OK") {
+                            console.log('Login succeed!');
+                            return response.statusText;
+                        }
+                        throw new Error(response.statusText);
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        // console.log(this.props.history);
+                        // this.props.history.push('/login');
+                        // message.success('Register succeed!');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        // message.error('Login failed.');
+                    });
+
 
                 // fetch(`${API_ROOT}/signup`, {
                 //     method: 'POST',
