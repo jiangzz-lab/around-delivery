@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import { Carousel } from 'antd';
 import logo from '../assets/images/logo.svg';
+import robot1 from '../assets/images/robot1.jpg';
+import robot2 from '../assets/images/robot2.jpeg';
+import drone1 from '../assets/images/drone1.jpg';
 
 class PhotoBooth extends Component {
     render() {
         return (
             <Carousel autoplay>
                 <div>
-                    <img src={logo} alt="logo" className="photos"/>
-                    <h3> Photo 1 </h3>
+                    <img src={drone1} alt="logo" className="photos"/>
                 </div>
+                {/*<div>*/}
+                {/*    <img src={robot1} alt="logo" className="photos"/>*/}
+                {/*</div>*/}
                 <div>
-                    <img src={logo} alt="logo" className="photos"/>
-                    <h3>Photo 2</h3>
-                </div>
-                <div>
-                    <img src={logo} alt="logo" className="photos"/>
-                    <h3>Photo 3</h3>
+                    <img src={robot2} alt="logo" className="photos"/>
                 </div>
             </Carousel>
         );
