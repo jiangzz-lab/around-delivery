@@ -94,7 +94,7 @@ class ShipInfoForm extends Component {
                  <Form.Item
                      name="Street_Address"
                  >
-                   {getFieldDecorator('sender-address', {
+                   {getFieldDecorator('senderAddress', {
                      rules: [
                        {
                          required: true,
@@ -196,7 +196,7 @@ class ShipInfoForm extends Component {
                <Form.Item
                    name="receiver-address"
                >
-                 {getFieldDecorator('receiver-address', {
+                 {getFieldDecorator('receiverAddress', {
                    rules: [
                      {
                        required: true,

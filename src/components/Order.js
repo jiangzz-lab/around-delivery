@@ -6,6 +6,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 
 import ShipInfo from "./ShipInfo";
+import AddressUpdateForm from "./AddressUpdateForm";
 import Recommend from "./Recommend";
 import CheckOut from "./CheckOut";
 import Payment from "./Payment";
@@ -44,65 +45,143 @@ class Order extends Component {
         this.state = {
             current: 0,
             orderInfo: {},
+            toCollectShipInfo: true,
             isLoadingOptions: false,
+            toUpdateAddress: false,
             isProcessingPayment: false,
+            addressesValid: false,
+            addressValidStatus: {
+                senderAddressValid: false,
+                receiverAddressValid: false,
+            }
         };
         this.shipInfo = React.createRef();
+        this.addressUpdate = React.createRef();
         this.recommendInfo = React.createRef();
         this.payRef = React.createRef();
     }
 
-    handleShipInfo = () => {
-        this.shipInfo.current.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                // get recommendation options form backend
-                this.setState({
-                    isLoadingOptions : true,
-                });
-                axios.post(`http://localhost:5000/recommendation`, {
-                    "oneAddr": values['sender-address'],
-                    "twoAddr": values['receiver-address'],
-                    "height" : values['package-height'],
-                    "length" : values['package-length'],
-                    "width" : values['package-width'],
-                    })
-                    .then((response) => {
-                        const optionResponse = response.data;
-                        // It is very awkward to put two pieces of data into one object;
-                        // We should receive Json array here in the future;
-                        const option1 = {
-                            time: optionResponse['Drone Estimated Delivery Time (fastest)'],
-                            price: optionResponse['Drone Price (fastest)'],
-                            carrier: 'Drone',
-                        };
-                        const option2 = {
-                            time: optionResponse['Robot Estimated Delivery Time (cheapest)'],
-                            price: optionResponse['Robot Price (cheapest)'],
-                            carrier: 'Robot',
+    validateAddress = () => {
+        // validate address
+        const { orderInfo } = this.state;
+        axios.post(`http://localhost:5000/validaddr`, {
+            "senderAddr": orderInfo['senderAddress'],
+            "receiverAddr": orderInfo['receiverAddress'],
+        })
+            .then((response) => {
+                console.log('response from 5000 validaddr -->', response.data);
+                const addressStatus = response.data;
+                if (addressStatus['SenderAddrStatus'] === "Valid" && addressStatus['ReceiverAddrStatus'] === "Valid") {
+                    const updatedOrderInfo = Object.assign(orderInfo,{
+                        senderAddress: addressStatus['SenderAddress'],
+                        receiverAddress: addressStatus['ReceiverAddress'],
+                    });
+                    this.setState({
+                        isLoadingOptions: false,
+                        orderInfo: updatedOrderInfo,
+                        addressValidStatus: {
+                            senderAddressValid: addressStatus['SenderAddrStatus'] === "Valid",
+                            receiverAddressValid: addressStatus['ReceiverAddrStatus'] === "Valid",
                         }
-                        const options = [];
-                        const recommendations = options.concat(option1).concat(option2);
-                        // Now add the recommendations to orderInfo
-                        const updatedOrderInfo = Object.assign(values, {
-                            number: Math.floor(Math.random() * 1000),
-                            status: 0,
-                            recommendations: recommendations,
-                        })
-                        // and update the orderInfo data in this.state
-                        this.setState({
-                            orderInfo: updatedOrderInfo,
-                            isLoadingOptions: false,
-                        });
                     })
-                    .catch((error) => {
-                        console.log(error)
+                } else {
+                    this.setState({
+                        isLoadingOptions: false,
+                        addressValidStatus: {
+                            senderAddressValid: addressStatus['SenderAddrStatus'] === "Valid",
+                            receiverAddressValid: addressStatus['ReceiverAddrStatus'] === "Valid",
+                        }
                     })
-                const current = this.state.current + 1;
-                this.setState({current});
-            } else {
-                message.error('Please enter necessary information!');
-            }
+                }
+            })
+            .catch((error) => {
+                console.log('error from 5000 validaddr -->', error);
+            })
+    }
+
+    handleShipInfo = (event) => {
+            this.setState({
+                isLoadingOptions: true,
+            })
+            this.shipInfo.current.validateFieldsAndScroll((err, values) => {
+                if (!err) {
+                    // collect address information and validate addresses
+                    const formalizedAddresses = {
+                        senderAddress: values['senderAddress'] + ', CA, ' + values['sender-zip-code'],
+                        receiverAddress: values['receiverAddress'] + ', CA, ' + values['receiver-zip-code'],
+                    }
+                    console.log('formalized address -->', formalizedAddresses);
+
+                    const orderInfo = Object.assign({}, values, formalizedAddresses);
+                    this.setState({
+                        orderInfo: orderInfo,
+                    });
+                }
+                else {
+                    message.error('Please enter necessary information!');
+                }
+            })
+    }
+
+    getRecommondation = (event) => {
+        this.setState({
+            isLoadingOptions : true,
         });
+
+        const { orderInfo, senderAddressValid, receiverAddressValid } = this.state;
+        // if shipInfo is not collected, handle shipInfo Form fisrt
+
+        if(Object.keys(orderInfo).length === 0) {
+            console.log('returned address -->', this.handleShipInfo(event));
+        }
+
+        // if not both addresses are valid, validate the addresses
+        //if (!(senderAddressValid && receiverAddressValid)) {
+        //    this.validateAddress(formalizedAddress);
+        //}
+
+
+        // get recommendations
+      /*  axios.post(`http://localhost:5000/recommendation`, {
+            "oneAddr": orderInfo['sender-address'],
+            "twoAddr": orderInfo['receiver-address'],
+            "height" : orderInfo['package-height'],
+            "length" : orderInfo['package-length'],
+            "width" : orderInfo['package-width'],
+        })
+            .then((response) => {
+                const optionResponse = response.data;
+                // It is very awkward to put two pieces of data into one object;
+                // We should receive Json array here in the future;
+                const option1 = {
+                    time: optionResponse['Drone Estimated Delivery Time (fastest)'],
+                    price: optionResponse['Drone Price (fastest)'],
+                    carrier: 'Drone',
+                };
+                const option2 = {
+                    time: optionResponse['Robot Estimated Delivery Time (cheapest)'],
+                    price: optionResponse['Robot Price (cheapest)'],
+                    carrier: 'Robot',
+                }
+                const options = [];
+                const recommendations = options.concat(option1).concat(option2);
+                // Now add the recommendations to orderInfo
+                const updatedOrderInfo = Object.assign(orderInfo, {
+                    number: Math.floor(Math.random() * 1000),
+                    status: 0,
+                    recommendations: recommendations,
+                })
+                // and update the orderInfo data in this.state
+                this.setState({
+                    orderInfo: updatedOrderInfo,
+                    isLoadingOptions: false,
+                });
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        const current = this.state.current + 1;
+        this.setState({current}); */
     }
 
     handleRecommendInfo = () => {
@@ -164,9 +243,21 @@ class Order extends Component {
     }
 
     renderShipInfo = () => {
+        const { isLoadingOptions } = this.state;
+        const { senderAddressValid, receiverAddressValid } = this.state.addressValidStatus;
+        if (isLoadingOptions) {
+            return <Spin tip="We are getting the best solutions for you ..."/>
+        } else if (!(senderAddressValid && receiverAddressValid)) {
+            return <AddressUpdateForm
+                ref={this.addressUpdate}
+                senderAddressValid={senderAddressValid}
+                receiverAddressValid={receiverAddressValid}
+            />;
+        } else {
             return <ShipInfo
                 ref={this.shipInfo}
             />;
+        }
     }
 
     renderRecommend = () => {
@@ -186,11 +277,15 @@ class Order extends Component {
     }
 
     renderPayment = () => {
+        const  recommendations = this.state.orderInfo['recommendations'];
+        const  option = this.state.orderInfo['delivery-option'];
         const stripePromise = loadStripe("pk_test_51H347oGW9FfdIurDNI4Kl7mFH1Wj8i0ToP1cYb90pUsAujhUt4kl6G6nALtY4sv0Y0hyCFuuE3EV322uqyetXuo400GeHb9dUo");
         return <Elements stripe={stripePromise}><Payment
             ref={this.payRef}
             togglePaymentStatus={this.togglePaymentStatus}
             moveNext={this.moveNext}
+            price={recommendations[option]['price']}
+            isProcessingPayment={this.state.isProcessingPayment}
         /></Elements>;
     }
 
@@ -212,9 +307,16 @@ class Order extends Component {
         return stepContent[current]();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!this.state.addressesValid){
+            this.validateAddress();
+        }
+    }
+
     render() {
         /* current notes the current step of the order process*/
         console.log('updatedOrderInfo in this.state -->', this.state.orderInfo);
+        //console.log('orderInfo length -->', Object.keys(this.state.orderInfo).length);
         const { current } = this.state;
         /* stepContent is an Array that saves corresponding component to render
          as step content for each step*/
