@@ -6,11 +6,15 @@ class CheckoutForm extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+
     const {stripe, elements} = this.props;
+    console.log(stripe);
     const {error, paymentMethod} = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
+
+
     if (error) {
       console.log(error.message);
     } else {
@@ -21,8 +25,13 @@ class CheckoutForm extends React.Component {
         currency: "usd",
         paymentMethodId: paymentMethod['id'],
       }
+
+      console.log('already generate paymentMethod!');
+
       const { togglePaymentStatus, moveNext } = this.props;
+
       togglePaymentStatus(true);
+
       fetch("http://localhost:5000/pay", {
         method: "POST",
         headers: {

@@ -25,13 +25,15 @@ class TrackingPage extends Component {
 
     render() {
         const { current, time } = this.state;
+        const { match } = this.props;
+        const fakeCurrent = match.params.number % 2;
         // const current = this.props.orderInfo.status;
         // console.log(this.props.orderInfo);
         let statusArray = ['wait', 'wait', 'wait', 'wait'];
         for (let i = 0; i < statusArray.length; i++) {
-            if (i < current) {
+            if (i < fakeCurrent) {
                 statusArray[i]  = 'finished';
-            } else if (i === current) {
+            } else if (i === fakeCurrent) {
                 statusArray[i] = 'process';
             } else {
                 statusArray[i] = 'wait';
@@ -41,11 +43,12 @@ class TrackingPage extends Component {
         console.log('props of TrackingPage -->', this.props);
         console.log('match of TrackingPage -->', this.props.match);
 
-        const { match } = this.props;
+
+
 
         return (
             <div className="tracking-page">
-                <p className="tracking-status"> Your order {match.params.number} is {statusString[current]}! </p>
+                <p className="tracking-status"> Your order {match.params.number} is {statusString[fakeCurrent]}! </p>
                 <div className="tracking-bar">
                     <Steps>
                         <Step status={statusArray[0]} title="Order Confirmed" icon={<Icon type="solution" />} />
@@ -54,7 +57,7 @@ class TrackingPage extends Component {
                         <Step status={statusArray[3]} title="Delivered" icon={<Icon type="smile-o" />} />
                     </Steps>
                 </div>
-                <p className="delivery-time"> Deliver in {time} hours </p>
+                <p className="delivery-time"> Deliver in {fakeCurrent + 1} hours </p>
             </div>
         );
     }
