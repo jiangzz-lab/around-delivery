@@ -2,10 +2,10 @@
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
-    height: 320px;
+    height: 400px;
     width: 180px;
     line-height: 160px;
-    background-color: #fafafa;
+    /*background-color: #fafafa;*/
     overflow: hidden;
 }
 
@@ -25,6 +25,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 200px;
-    width: 20%;
+    height: 35%;
+    width: 35%;
 }
