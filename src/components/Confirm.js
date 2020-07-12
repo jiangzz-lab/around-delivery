@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Result, Icon, Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 class Confirm extends Component {
     render() {
@@ -9,7 +10,7 @@ class Confirm extends Component {
             <Result
                 icon={<Icon type="smile" theme="twoTone" />}
                 title={`Great, your order ${number} is placed!`}
-                extra={<Button type="primary">Tracking</Button>}
+                extra={<Link to={`/home/tracking/${number}`}><Button type="primary">Tracking</Button></Link>}
             />
         );
     }

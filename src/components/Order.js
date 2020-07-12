@@ -6,6 +6,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 
 import ShipInfo from "./ShipInfo";
+import AddressUpdate from "./AddressUpdate";
 import Recommend from "./Recommend";
 import CheckOut from "./CheckOut";
 import Payment from "./Payment";
@@ -44,65 +45,171 @@ class Order extends Component {
         this.state = {
             current: 0,
             orderInfo: {},
+            shipInfoDisplay: 'initial',
+            toCollectShipInfo: true,
+            toUpdateAddress: false,
             isLoadingOptions: false,
+
             isProcessingPayment: false,
+            addressesValid: false,
+            addressValidStatus: {
+                senderAddressValid: false,
+                receiverAddressValid: false,
+            }
         };
         this.shipInfo = React.createRef();
+        this.addressUpdate = React.createRef();
         this.recommendInfo = React.createRef();
         this.payRef = React.createRef();
     }
 
-    handleShipInfo = () => {
-        this.shipInfo.current.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                // get recommendation options form backend
-                this.setState({
-                    isLoadingOptions : true,
-                });
-                axios.post(`http://localhost:5000/recommendation`, {
-                    "oneAddr": values['sender-address'],
-                    "twoAddr": values['receiver-address'],
-                    "height" : values['package-height'],
-                    "length" : values['package-length'],
-                    "width" : values['package-width'],
+    validateAddress = () => {
+        // validate address
+        const { orderInfo } = this.state;
+        axios.post(`http://localhost:5000/validaddr`, {
+            "senderAddr": orderInfo['senderAddress'],
+            "receiverAddr": orderInfo['receiverAddress'],
+        })
+            .then((response) => {
+                console.log('response from 5000 validaddr -->', response.data);
+                const addressStatus = response.data;
+                if (addressStatus['SenderAddrStatus'] === "Valid" && addressStatus['ReceiverAddrStatus'] === "Valid") {
+                    const updatedOrderInfo = Object.assign(orderInfo,{
+                        senderAddress: addressStatus['SenderAddress'],
+                        receiverAddress: addressStatus['ReceiverAddress'],
+                    });
+
+                    // if already valid, jump to next step and reinitialize addressValidStatus
+                    // as well as display setting
+                    const current = this.state.current + 1;
+                    this.setState({
+                        orderInfo: updatedOrderInfo,
+                        current: current,
+                        addressValidStatus: {
+                            senderAddressValid: false,
+                            receiverAddressValid: false,
+                        },
+                        toCollectShipInfo: true,
+                        toUpdateAddress: false,
+                        shipInfoDisplay: 'initial',
+                        isLoadingOptions: true,
                     })
-                    .then((response) => {
-                        const optionResponse = response.data;
-                        // It is very awkward to put two pieces of data into one object;
-                        // We should receive Json array here in the future;
-                        const option1 = {
-                            time: optionResponse['Drone Estimated Delivery Time (fastest)'],
-                            price: optionResponse['Drone Price (fastest)'],
-                            carrier: 'Drone',
-                        };
-                        const option2 = {
-                            time: optionResponse['Robot Estimated Delivery Time (cheapest)'],
-                            price: optionResponse['Robot Price (cheapest)'],
-                            carrier: 'Robot',
+                } else {
+                    // if not all valid, save the valid/invalid status
+                    // switch the display to AddressUpdate page
+                    this.setState({
+                        addressValidStatus: {
+                            senderAddressValid: addressStatus['SenderAddrStatus'] === "Valid",
+                            receiverAddressValid: addressStatus['ReceiverAddrStatus'] === "Valid",
+                        },
+                        toCollectShipInfo: false,
+                        toUpdateAddress: true,
+                        shipInfoDisplay: 'update',
+                    })
+                }
+            })
+            .catch((error) => {
+                console.log('error from 5000 validaddr -->', error);
+            })
+    }
+
+    handleShipInfo = (event) => {
+            event.preventDefault();
+            const { toCollectShipInfo, toUpdateAddress, orderInfo } = this.state;
+            const { senderAddressValid, receiverAddressValid } = this.state.addressValidStatus;
+            if (toCollectShipInfo) {
+                this.shipInfo.current.validateFieldsAndScroll((err, values) => {
+                    if (!err) {
+                        // collect address information and validate addresses
+                        const formalizedAddresses = {
+                            senderAddress: values['senderAddress'] + ', CA, ' + values['sender-zip-code'],
+                            receiverAddress: values['receiverAddress'] + ', CA, ' + values['receiver-zip-code'],
                         }
-                        const options = [];
-                        const recommendations = options.concat(option1).concat(option2);
-                        // Now add the recommendations to orderInfo
-                        const updatedOrderInfo = Object.assign(values, {
-                            number: Math.floor(Math.random() * 1000),
-                            status: 0,
-                            recommendations: recommendations,
-                        })
-                        // and update the orderInfo data in this.state
+                        console.log('formalized address -->', formalizedAddresses);
+
+                        const orderInfo = Object.assign({}, values, formalizedAddresses);
+                        this.setState({
+                            toCollectShipInfo: false,
+                            orderInfo: orderInfo,
+                            shipInfoDisplay: 'processing',
+                        });
+                    } else {
+                        message.error('Please enter necessary information!');
+                    }
+                })
+            } else if (toUpdateAddress) {
+                const { orderInfo, } = this.state;
+                this.addressUpdate.current.validateFieldsAndScroll((err, values) => {
+                    if (!err) {
+                        // collect updated addresses from addressUpdateForms
+                        const formalizedAddresses = {
+                            senderAddress: senderAddressValid ? orderInfo['senderAddress']
+                                : values['senderAddress'] + ', CA, ' + values['sender-zip-code'],
+                            receiverAddress: receiverAddressValid ? orderInfo['receiverAddress']
+                                : values['receiverAddress'] + ', CA, ' + values['receiver-zip-code'],
+                        }
+                        console.log('updated address -->', formalizedAddresses);
+
+                        const updatedOrderInfo = Object.assign(orderInfo, formalizedAddresses);
                         this.setState({
                             orderInfo: updatedOrderInfo,
-                            isLoadingOptions: false,
+                            shipInfoDisplay: 'processing',
                         });
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-                const current = this.state.current + 1;
-                this.setState({current});
-            } else {
-                message.error('Please enter necessary information!');
+                    } else {
+                        message.error('Please enter necessary information!');
+                    }
+                })
             }
-        });
+    }
+
+    getRecommendation = () => {
+
+        console.log('We are ready to get recommendations!');
+        console.log('orderInfo before send to recommendation -->', this.state.orderInfo);
+
+        // get recommendations
+        const { orderInfo } =  this.state;
+        axios.post(`http://localhost:5000/recommendation`, {
+            "senderAddr": orderInfo['senderAddress'],
+            "receiverAddr": orderInfo['receiverAddress'],
+            "height" : orderInfo['package-height'],
+            "length" : orderInfo['package-length'],
+            "width" : orderInfo['package-width'],
+            "weight" : orderInfo['package-weight'],
+        })
+            .then((response) => {
+                // It is very awkward to put two pieces of data into one object;
+                // We should receive Json array here in the future;
+                const recommendations = response.data;
+                console.log(recommendations);
+                // Now add the recommendations to orderInfo
+                const updatedOrderInfo = Object.assign(orderInfo, {
+                    number: 456,
+                    status: 0,
+                    recommendations: recommendations,
+                })
+                // and update the orderInfo data in this.state
+                this.setState({
+                    orderInfo: updatedOrderInfo,
+                    isLoadingOptions: false,
+                });
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const { current, isLoadingOptions } = this.state;
+        const { shipInfoDisplay } = this.state;
+        if (current === 0 && shipInfoDisplay === 'processing') {
+            const { senderAddressValid, receiverAddressValid } = this.state.addressValidStatus;
+            if (!(senderAddressValid && receiverAddressValid)){
+                this.validateAddress();
+            }
+        } else if (current === 1 && isLoadingOptions) {
+            this.getRecommendation();
+        }
     }
 
     handleRecommendInfo = () => {
@@ -136,6 +243,8 @@ class Order extends Component {
 
     handlePay = (event) => {
         console.log('payment -->', this.state.isProcessingPayment);
+        console.log(this.payRef.current);
+        console.log(this.payRef.current.handlePay);
         this.payRef.current.handlePay(event);
         // const current = this.state.current + 1;
         // this.setState({
@@ -164,9 +273,23 @@ class Order extends Component {
     }
 
     renderShipInfo = () => {
-            return <ShipInfo
-                ref={this.shipInfo}
-            />;
+        const { shipInfoDisplay } = this.state;
+        const { senderAddressValid, receiverAddressValid } = this.state.addressValidStatus;
+
+        switch (shipInfoDisplay) {
+            case 'initial':
+                return <ShipInfo
+                    ref={this.shipInfo}
+                />;
+            case 'processing':
+                return <Spin tip="Processing ..."/>;
+            case 'update':
+                return <AddressUpdate
+                    ref={this.addressUpdate}
+                    senderAddressValid={senderAddressValid}
+                    receiverAddressValid={receiverAddressValid}
+                />;
+        }
     }
 
     renderRecommend = () => {
@@ -186,11 +309,15 @@ class Order extends Component {
     }
 
     renderPayment = () => {
+        const  recommendations = this.state.orderInfo['recommendations'];
+        const  option = this.state.orderInfo['delivery-option'];
         const stripePromise = loadStripe("pk_test_51H347oGW9FfdIurDNI4Kl7mFH1Wj8i0ToP1cYb90pUsAujhUt4kl6G6nALtY4sv0Y0hyCFuuE3EV322uqyetXuo400GeHb9dUo");
         return <Elements stripe={stripePromise}><Payment
             ref={this.payRef}
             togglePaymentStatus={this.togglePaymentStatus}
             moveNext={this.moveNext}
+            price={recommendations[option]['price']}
+            isProcessingPayment={this.state.isProcessingPayment}
         /></Elements>;
     }
 
@@ -215,6 +342,7 @@ class Order extends Component {
     render() {
         /* current notes the current step of the order process*/
         console.log('updatedOrderInfo in this.state -->', this.state.orderInfo);
+        //console.log('orderInfo length -->', Object.keys(this.state.orderInfo).length);
         const { current } = this.state;
         /* stepContent is an Array that saves corresponding component to render
          as step content for each step*/

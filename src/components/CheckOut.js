@@ -12,7 +12,7 @@ class CheckOut extends Component {
                     <Descriptions.Item label="Telephone">{orderInfo['receiver-phone-number']}</Descriptions.Item>
                     <Descriptions.Item label="Email">{orderInfo['receiver-email']}</Descriptions.Item>
                     <Descriptions.Item label="Address">
-                        {orderInfo['receiver-address']}
+                        {orderInfo['receiverAddress']}
                     </Descriptions.Item>
                 </Descriptions>
                 <Descriptions title="Sender Info">
@@ -20,7 +20,7 @@ class CheckOut extends Component {
                     <Descriptions.Item label="Telephone">{orderInfo['sender-phone-number']}</Descriptions.Item>
                     <Descriptions.Item label="Email">{orderInfo['sender-email']}</Descriptions.Item>
                     <Descriptions.Item label="Address">
-                        {orderInfo['sender-address']}
+                        {orderInfo['senderAddress']}
                     </Descriptions.Item>
                 </Descriptions>
                 <Descriptions title="Package Info">

@@ -34,3 +34,11 @@
 .card-element {
     margin: auto;
 }
+
+.price-tag {
+    font-size: 20pt;
+}
+
+.payment-processing {
+    margin-top: 10px;
+}

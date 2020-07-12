@@ -1,36 +1,52 @@
 import React, {createRef} from 'react';
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
+import { Spin, message } from 'antd';
 
 class CheckoutForm extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+
     const {stripe, elements} = this.props;
+    console.log(stripe);
     const {error, paymentMethod} = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
     });
+
+
     if (error) {
       console.log(error.message);
     } else {
       console.log(paymentMethod);
+      const { price } = this.props;
       const orderData = {
-        items: [{ id: "photo-subscription" }],
+        price: price,
         currency: "usd",
         paymentMethodId: paymentMethod['id'],
       }
+
+      console.log('already generate paymentMethod!');
+
       const { togglePaymentStatus, moveNext } = this.props;
+
       togglePaymentStatus(true);
+
       fetch("http://localhost:5000/pay", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(orderData)
-      }).then((response) => {
-        console.log(response);
+      }).then((response) =>
+      response.json()
+      ).then((data) => {
+        console.log(data);
         togglePaymentStatus(false);
         moveNext();
+      }).catch((error) => {
+        console.log(error);
+        message.error("Payment failed, please check your card information!")
       });
     }
   };
@@ -53,12 +69,15 @@ class CheckoutForm extends React.Component {
         },
       },
     };
-
+    const { price } = this.props;
+    const { isProcessingPayment } = this.props;
     return (
         <div>
+          <p className="price-tag"> ${price} </p>
           <form className="card-form" onSubmit={this.handleSubmit}>
             <CardElement className="card-element" options={CARD_ELEMENT_OPTIONS}/>
           </form>
+          { isProcessingPayment? <Spin className='payment-processing' tip="Processing ..." /> : null }
         </div>
     );
   }
@@ -75,7 +94,6 @@ class Payment extends React.Component {
   }
 
   render(){
-    console.log('props of payment -->', this.props);
     return(
         <ElementsConsumer>
           {({stripe, elements}) => {
@@ -87,6 +105,8 @@ class Payment extends React.Component {
                 ref={this.formRef}
                 togglePaymentStatus={this.props.togglePaymentStatus}
                 moveNext={this.props.moveNext}
+                price={this.props.price}
+                isProcessingPayment={this.props.isProcessingPayment}
             />;
           }
           }
