@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Form, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 // import { API_ROOT} from "../constants";
+import axios from 'axios';
 
 class RegistrationForm extends Component {
     state = {
@@ -42,9 +43,10 @@ class RegistrationForm extends Component {
 
         return (
             <Form {...formItemLayout} onSubmit={this.handleSubmit} className="register">
+                <h1 className="title">   Register your account</h1>
                 <Form.Item label="Username">
                     {
-                        getFieldDecorator('Username', {
+                        getFieldDecorator('username', {
                             rules: [
                                 {
                                     required: true,
@@ -84,6 +86,54 @@ class RegistrationForm extends Component {
                         })(<Input.Password onBlur={this.handleConfirmBlur} />)
                     }
                 </Form.Item>
+                <Form.Item label="Last name">
+                    {
+                        getFieldDecorator('last_name', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'Please input your Last name'
+                                }
+                            ]
+                        })(<Input />)
+                    }
+                </Form.Item>
+                <Form.Item label="First name">
+                    {
+                        getFieldDecorator('first_name', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'Please input your First name'
+                                }
+                            ]
+                        })(<Input />)
+                    }
+                </Form.Item>
+                <Form.Item label="Email Address">
+                    {
+                        getFieldDecorator('email_address', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'Please input your Email Address'
+                                }
+                            ]
+                        })(<Input />)
+                    }
+                </Form.Item>
+                <Form.Item label="Phone number">
+                    {
+                        getFieldDecorator('phone_number', {
+                            rules: [
+                                {
+                                    required: true,
+                                    message: 'Please input your Phone number'
+                                }
+                            ]
+                        })(<Input />)
+                    }
+                </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
                         Register
@@ -121,7 +171,37 @@ class RegistrationForm extends Component {
         // console.log(this.props.form.getFieldsValue());
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
+                axios.post(`http://localhost:5000/register`, {
+                    // username: values.username,
+                    // password: values.password,
+                    "user_id": values['username'],
+                    "password": values['password'],
+                    "last_name":values['last_name'],
+                    "first_name":values["first_name"],
+                    "email_address":values["email_address"],
+                    "phone_number":values["phone_number"]
+                })
+                    .then((response) => {
+                        console.log(response);
+                        if (response.statusText === "OK") {
+                            console.log('Login succeed!');
+                            return response.statusText;
+                        }
+                        throw new Error(response.statusText);
+                    })
+                    .then((data) => {
+                        console.log(data);
+                        // console.log(this.props.history);
+                        // this.props.history.push('/login');
+                        // message.success('Register succeed!');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        // message.error('Login failed.');
+                    });
+
+
                 // fetch(`${API_ROOT}/signup`, {
                 //     method: 'POST',
                 //     body: JSON.stringify({
