@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Descriptions } from 'antd';
-import Payment from "./Payment";
 
 class CheckOut extends Component {
     render() {

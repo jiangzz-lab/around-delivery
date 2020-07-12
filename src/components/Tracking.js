@@ -16,7 +16,8 @@ class Tracking extends Component {
         super(props);
         this.state = {
             orderToTrack: undefined,
-        }
+        };
+        this.pageRef = React.createRef();
     }
 
     handleSearch = value => {
@@ -31,6 +32,7 @@ class Tracking extends Component {
             });
             return;
         }
+        this.pageRef.current.resetTrackingStates();
         this.props.history.push(match.url + '/' + value);
     };
 
@@ -56,7 +58,9 @@ class Tracking extends Component {
                         />
                     </AutoComplete>
                 </div>
-                <Route path={`${match.url}/:number`} component={TrackingPage}/>
+                <Route path={`${match.url}/:number`} render={({match}) => {
+                    return <TrackingPage match={match} ref={this.pageRef}/>;
+                }}/>
             </div>
         );
     }
