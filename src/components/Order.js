@@ -78,20 +78,25 @@ class Order extends Component {
                         senderAddress: addressStatus['SenderAddress'],
                         receiverAddress: addressStatus['ReceiverAddress'],
                     });
+
+                    // if already valid, jump to next step and reinitialize addressValidStatus
+                    // as well as display setting
                     const current = this.state.current + 1;
                     this.setState({
                         orderInfo: updatedOrderInfo,
+                        current: current,
                         addressValidStatus: {
                             senderAddressValid: false,
                             receiverAddressValid: false,
                         },
-                        current: current,
                         toCollectShipInfo: true,
                         toUpdateAddress: false,
                         shipInfoDisplay: 'initial',
                         isLoadingOptions: true,
                     })
                 } else {
+                    // if not all valid, save the valid/invalid status
+                    // switch the display to AddressUpdate page
                     this.setState({
                         addressValidStatus: {
                             senderAddressValid: addressStatus['SenderAddrStatus'] === "Valid",
@@ -109,6 +114,7 @@ class Order extends Component {
     }
 
     handleShipInfo = (event) => {
+            event.preventDefault();
             const { toCollectShipInfo, toUpdateAddress, orderInfo } = this.state;
             const { senderAddressValid, receiverAddressValid } = this.state.addressValidStatus;
             if (toCollectShipInfo) {
