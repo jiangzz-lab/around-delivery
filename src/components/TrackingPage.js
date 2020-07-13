@@ -37,6 +37,9 @@ class TrackingPage extends Component {
     componentDidMount() {
         const statuses = ["Order created!", "Order picked up!", "Order out for delivery!", "Order delivered!"];
         const { match } = this.props;
+        this.setState({
+            isLoadingPage: true,
+        });
         axios.post(`http://localhost:5000/tracking`, {
             "tracking_id": match.params.number,
         })
@@ -65,6 +68,10 @@ class TrackingPage extends Component {
             });
     }
 
+    componentWillMount() {
+        this.props.resetFirstSearch();
+    }
+
     componentDidUpdate() {
         const { updated } = this.state;
         if(updated) { return; }
@@ -76,7 +83,7 @@ class TrackingPage extends Component {
             .then(response => {
                 const status = response.data.status;
                 const alert = response.data.alert;
-               // console.log(status);
+                console.log("status from backend -->", status);
                // console.log(alert);
                 if (alert !== undefined) {
                     this.setState({
@@ -85,6 +92,7 @@ class TrackingPage extends Component {
                     });
                 } else {
                     const current = statuses.findIndex((element) => element === status);
+                    console.log("status index -->", current);
                     this.setState({
                         current : current,
                         isLoadingPage: false,

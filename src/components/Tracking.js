@@ -16,12 +16,20 @@ class Tracking extends Component {
         super(props);
         this.state = {
             orderToTrack: undefined,
+            firstSearch: true,
         };
         this.pageRef = React.createRef();
     }
 
+    resetFirstSearch = () => {
+        this.setState({
+            firstSearch: true,
+        });
+    }
+
     handleSearch = value => {
         const { match } = this.props;
+        const { firstSearch } = this.state;
         if (value === "") {
             message.warning({
                 content: 'Please enter your order number!',
@@ -32,8 +40,15 @@ class Tracking extends Component {
             });
             return;
         }
-        this.pageRef.current.resetTrackingStates();
+        console.log('props of trakcing -->', this.props);
         this.props.history.push(match.url + '/' + value);
+        console.log(this.state.firstSearch);
+        if(!firstSearch){
+            this.pageRef.current.resetTrackingStates();
+        }
+        this.setState({
+            firstSearch: false,
+        })
     };
 
 
@@ -59,7 +74,11 @@ class Tracking extends Component {
                     </AutoComplete>
                 </div>
                 <Route path={`${match.url}/:number`} render={({match}) => {
-                    return <TrackingPage match={match} ref={this.pageRef}/>;
+                    return <TrackingPage
+                        match={match}
+                        ref={this.pageRef}
+                        resetFirstSearch={this.resetFirstSearch}
+                    />;
                 }}/>
             </div>
         );

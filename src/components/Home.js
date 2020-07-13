@@ -5,13 +5,10 @@ import { Button, Icon } from "antd";
 import { Link, Route } from "react-router-dom";
 
 class Home extends Component {
-    /* constructor(props) {
+   constructor(props) {
         super(props);
-        this.state = {
-            orders: [],
-            orderToTrack: 0,
-        }
-    }*/
+        this.trackingRef = React.createRef();
+    }
 
     renderOrder = () => {
        // const orderList = this.state.orders;
@@ -30,7 +27,7 @@ class Home extends Component {
                 </header>
                 <div className="home-action">
                     <Link to={`${match.url}/tracking`}>
-                        <Button className="tracking-button" type="primary">
+                        <Button className="tracking-button" type="primary" onClick={this.resetFirstSearch}>
                             <Icon type="search" /> Track My Package
                         </Button>
                     </Link>
@@ -45,7 +42,7 @@ class Home extends Component {
                     </Link>
                 </div>
 
-                <Route path={`${match.url}/tracking`} component={Tracking} />
+                <Route path={`${match.url}/tracking`} component={Tracking}/>
                 <Route path={`${match.url}/order`} render={this.renderOrder} />
             </div>
         );
